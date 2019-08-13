@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Buncle</title>
+	<meta http-equiv="content-type" content="textml;charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/index/public/header.css">
+</head>
+<body>
+<div class="top">
+	<div class="top-nav {:request()->controller()=='Index' ? 'top-nav-active' : ''}">
+		资讯
+	</div>
+	<div class="top-nav">
+		APP
+	</div>
+</div>
+<div class="header">
+	<div class="header-nav {:request()->action()=='index' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__'">
+		微媒体
+	</div>
+	<div class="header-nav {:request()->action()=='news' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/index/index/news'">
+		24H快讯
+	</div>
+	<div class="header-nav  {:request()->action()=='notice' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/index/index/notice'">
+		交易所公告
+	</div>
+</div>
