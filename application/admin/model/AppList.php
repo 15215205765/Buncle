@@ -58,7 +58,7 @@ class AppList extends Model
 
 	public function del(){
 		$app = new AppList();
-		if($app->delete(request()->post('id'))){
+		if($app->where('id',request()->post('id'))->delete()){
 			return json(array('code'=>0));
 		}else{
 			return json(array('code'=>1));
