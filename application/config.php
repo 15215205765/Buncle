@@ -14,7 +14,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -240,7 +240,7 @@ return [
         'list_rows' => 15,
     ],
      'view_replace_str'       => [
-        '__PUBLIC__'=> '/thinkphp5/public',          
-        '__APP__'   => '/thinkphp5/index.php',              
+        '__PUBLIC__'=> '/buncle/public',          
+        '__APP__'   => '/buncle/index.php',              
     ],
 ];

@@ -2,19 +2,18 @@
 namespace app\index\controller;
 use think\Controller;
 
-class Index extends Controller
+class App extends Controller
 {
     public function index()
     {
-    	$this->assign('name','sunhui');
+    	 $app = model('AppList');
+        $list = $app->search();
+        $this->assign('list',$list);
        return $this->fetch('index');
     }
 
 
     public function news(){
-        $app = model('Information');
-        $list = $app->search();
-        $this->assign('list',$list);
     	return $this->fetch('news');
     }
     public function notice(){

@@ -22,15 +22,16 @@
 	<div class="top-nav {:request()->controller()=='App' ? 'top-nav-active' : ''}" onclick="window.location.href='__APP__/index/app'">
 		APP
 	</div>
+	<img src="__PUBLIC__/static/images/search.png" style="position: absolute;right: 20px;height: 20px;top: 25px;">
 </div>
 <div class="header">
-	<div class="header-nav {:request()->action()=='index' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__'">
-		微媒体
+	<div class="header-nav {:request()->action()=='index' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/index/app'">
+		交易所
 	</div>
-	<div class="header-nav {:request()->action()=='news' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/index/index/news'">
-		24H快讯
+	<div class="header-nav {:request()->action()=='news' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/index/app/news'">
+		资讯媒体
 	</div>
-	<div class="header-nav  {:request()->action()=='notice' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/index/index/notice'">
-		交易所公告
+	<div class="header-nav  {:request()->action()=='notice' ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/index/app/pruse'">
+		钱包应用
 	</div>
 </div>
