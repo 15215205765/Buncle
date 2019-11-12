@@ -1,0 +1,68 @@
+<!DOCTYPE >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>个人中心</title>
+<link href="../style/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="gerenzhongxin">
+<h1>个人中心</h1>
+<div class="user_xinxi"><img src="../image/user_icon.png"><b>Joio</b><a href="qiandao.html" class="button_style">签到</a></div>
+<a href="zongshu.html"><div class="qiandaoxinxi"><b>您已获得：</b><span>6UNCLE</span></div></a>
+</div>
+<!--焦点轮播图-->
+<div id="max_banner">
+<figure id="content_slider" class="swipslider">
+		        <ul class="sw-slides">
+		          <li class="sw-slide">
+		            <figure class="wanted sw-content">
+		              <a href="Template/content.html"><img src="../image/banner.png"alt="Mafia Boss"></a>
+		            </figure>
+		          </li>
+		          <li class="sw-slide">
+		            <figure class="wanted sw-content">
+		              <a href="Template/content.html"><img src="../image/banner.png"alt="Mafia Boss"></a>
+		            </figure>
+		          </li>
+		          <li class="sw-slide">
+		            <figure class="wanted sw-content">
+		              <a href="Template/content.html"><img src="../image/banner.png"alt="Mafia Boss"></a>
+		            </figure>
+		          </li>
+		          <li class="sw-slide">
+		            <figure class="wanted sw-content">
+		              <a href="Template/content.html"><img src="../image/banner.png"alt="Mafia Boss"></a>
+		            </figure>
+		       </li>
+		   </ul>
+	</figure>
+</div>
+<div class="ad_list">
+<ul>
+<li><a href="yaoqing.html"><img src="../image/user_icon_03.png" width="460" height="191"></a></li>
+<li><a href="renwuzhongxin.html"><img src="../image/user_icon_05.png" width="457" height="193"></a></li>
+</ul>
+</div>
+<div id="ad_img"><img src="../image/user_icon_09.png"></div>
+<script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../script/swipeslider.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+			//焦点图滚动调用
+		      $('#full_feature').swipeslider();
+		      $('#content_slider').swipeslider({
+		        transitionDuration: 600,
+		        autoPlayTimeout: 10000,
+		        sliderHeight: '400px'
+		      });
+		      $('#responsiveness').swipeslider();
+		      $('#customizability').swipeslider({
+		        transitionDuration: 1500, 
+		        autoPlayTimeout: 4000, 
+		        timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)',
+		        sliderHeight: '30%'});
+		})
+	</script>
+</body>
+</html>

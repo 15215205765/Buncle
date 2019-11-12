@@ -1,0 +1,27 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta name="viewport"content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UNCLE记录</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css">
+{include file="public/unshare" /}
+</head>
+
+<body>
+<div id="all_bg">
+<div id="APP_list_top" style=" border:0;">
+ <div class="list_top_back"><!-- <a href="__APP__/test/user"><img src="__PUBLIC__/static/images/2/back_icon.png"></a> --></div>
+  <b style=" color:#FFF"></b>
+</div>
+<div class="title_bg">UNCLE获得记录</div>
+<div class="list_style2">
+<ul>
+{volist name="list" id="item"}
+<li><a><img src="__PUBLIC__/static/images/2/quan.png"></a><b>{$item['remark']}{if $item['remark']=='兑换MBTC'}-{else/}+{/if}{$item['number']}</b><span>{$item['time']|date="Y-m-d H:i:s",###}</span></li>
+{/volist}
+</ul>
+</div>
+</div>
+</body>
+</html>

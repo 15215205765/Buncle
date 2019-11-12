@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BUNCLE区块链应用市场</title>
+	<meta http-equiv="content-type" content="textml;charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/index/public/header.css">
+	<script type="text/javascript" src='https://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script> 
+	  <script>
+     wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: '{$signPackage["appId"]}',  
+                timestamp: '{$signPackage["timestamp"]}',  
+                nonceStr: '{$signPackage["nonceStr"]}',  
+                signature: '{$signPackage["signature"]}',   
+                jsApiList: [
+                    'checkJsApi',  
+                    'onMenuShareTimeline',  
+                    'onMenuShareAppMessage',  
+                    'onMenuShareQQ',  
+                    'onMenuShareWeibo',  
+                    'onMenuShareQZone',
+                    'hideMenuItems'  ] // 必填，需要使用的JS接口列表 这里填写需要用到的微信api openlocation为使用微信内置地图查看位置接口
+            });
+              wx.ready(function () {  
+             
+             
+             wx.hideMenuItems({
+				menuList: [ 
+					'menuItem:share:appMessage',  
+                    'menuItem:share:timeline',  
+                    'menuItem:share:qq',  
+                    'menuItem:share:weiboApp',  
+                    'menuItem:favorite',
+                    'menuItem:share:QZone',
+                    'menuItem:copyUrl',
+                    'menuItem:openWithQQBrowser',
+                    'menuItem:openWithSafari'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+				});
+         })
+
+
+    
+</script>
+<style type="text/css">
+	.header{
+		overflow-y: hidden;
+		display: -webkit-box;
+	}
+	.header-nav{
+		width: 23%;.
+		float: inherit;
+	}
+</style>
+</head>
+<body>
+<div class="top">
+	<div class="top-nav {:request()->controller()=='App' ? 'top-nav-active' : ''}" onclick="window.location.href='__APP__/index/app'">
+		APP
+	</div>
+	<div class="top-nav {:request()->controller()=='Index' ? 'top-nav-active' : ''}" onclick="window.location.href='__APP__'">
+		资讯
+	</div>
+	
+	<img src="__PUBLIC__/static/images/search.png" style="position: absolute;right: 20px;height: 20px;top: 25px;" onclick="window.location.href='__APP__/index/app/search'">
+</div>
+<div class="header">
+	<div class="header-nav {$agent==100 ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/test/app/index?agent=100'" style="width:23%;">
+		推荐
+	</div>
+	<div class="header-nav {$agent==1 ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/test/app/index?agent=1'" style="width:23%;">
+		交易所
+	</div>
+	<div class="header-nav {$agent==2 ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/test/app/index?agent=2'" style="width:23%;">
+		资讯媒体
+	</div>
+	<div class="header-nav  {$agent==3 ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/test/app/index?agent=3'" style="width:23%;">
+		钱包应用
+	</div>
+	<div class="header-nav  {$agent==4 ? 'header-nav-active' : ''}" onclick="window.location.href='__APP__/test/app/index?agent=4'" style="width:23%;">
+		项目应用
+	</div>
+</div>

@@ -1,0 +1,339 @@
+{include file="public/left_nav" /}
+<div class="layui-body" style="background-color:#f2f2f2">
+    <div style="padding: 10px 0 0px 15px;">
+      
+        <a style="float: left;margin-right: 10px;" class="layui-btn  btn-chouj layui-btn-sm layui-btn-normal" href="__APP__/admin/shopduihuan/index" style="color:#1781ed">商品列表</a>
+       
+        <!-- <button style="float: left;margin-right: 10px;" class="layui-btn btn-chouj-choose layui-btn-sm layui-btn-normal">
+        <a href="__APP__/admin/prize/add" style="color:#fff">添加奖品</a>
+        </button> -->
+    </div>
+    <div style="padding: 10px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">添加商品</div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">商品名称：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text"  id="title" lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['title']}">
+                                </div>
+                            </div>
+                                <div class="layui-form-item">
+                                <label class="layui-form-label">缩略图：</label>
+                                <div class="layui-upload">
+                                    <button type="button" class="layui-btn" id="thumb" style="background-color:#ddd;color:#333">选择图片</button>
+                                    <div class="layui-upload-list thumb" style="margin: 10px 105px;"> 
+                                    
+                                    <img class="layui-upload-img" id="demo1" src="/public/uploads/{$data['thumb']}" style="width:80px;height:50px">
+                                   
+                                    <!-- <p style="color:#999;font-size:12px">*建议图片宽高80*50</p> -->
+                                        <p id="demoText"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">轮播图片：</label>
+                                <div class="layui-upload">
+                                    <button type="button" class="layui-btn" id="banner" style="background-color:#ddd;color:#333">选择图片</button>
+                                    <div class="layui-upload-list banner" style="margin: 10px 105px;"> 
+                                  
+                                    <!-- <p style="color:#999;font-size:12px">*建议图片宽高80*50</p> -->
+                                        <p id="demoText"></p>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="layui-form-item">
+                                <label class="layui-form-label">兑换比例：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" id="scale" lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['scale']}">
+                                </div>
+                            </div>
+
+                       
+                            
+                           
+                            
+                             <div class="layui-form-item">
+                                <label class="layui-form-label">兑换总数：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" id="count" lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['count']}">
+                                </div>
+                            </div>
+                             <div class="layui-form-item">
+                                <label class="layui-form-label">结束时间：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" id="endtime" lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['endtime']}">
+                                </div>
+                            </div>
+
+                            
+                           
+                              <div class="layui-form-item">
+                                <label class="layui-form-label">状态</label>
+                                <div class="layui-input-block">
+                                  <input type="radio" name="statu" value="1" title="上架" <?php if($data['statu']==1){echo 'checked';}?>>
+                                  <input type="radio" name="statu" value="0" title="下架" <?php if($data['statu']==0){echo 'checked';}?>>
+                                </div>
+                              </div>
+                           
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <div class="layui-btn site-demo-layedit btn-chouj-choose" id="submit">提交</div>
+                                   <input type="hidden" id="id" value="{$data['id']}" name="">
+                                    <a class="layui-btn layui-btn-primary" href="__APP__/admin/shopduihuan/index">返回</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body></html><style>
+.tishitiao {
+	background-color: #ff794e;
+	color: #fff;
+	border-left: none;
+	line-height: 3px;
+}
+.layui-layer-content {
+	padding: 20px 0;
+	text-align: center;
+}
+.layui-layer-molv .layui-layer-title {
+	color: #009f95
+}
+.layui-laydate .layui-this {
+	background-color: #4f76eb!important;
+	color: #fff!important;
+}
+.btn-chouj-choose {
+	border-radius: 3px;
+	background-color: #1781ed;
+	color: #fff;
+}
+.btn-chouj {
+	border-radius: 5px;
+	background-color: #fff;
+	color: #1781ed;
+	border: 1px solid #1781ed;
+}
+</style>
+<script type="text/javascript" src="__PUBLIC__/kindeditor-4.1.4/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor-4.1.4/lang/zh_CN.js"></script>
+<script type="text/javascript">
+    var editor;
+    KindEditor.ready(function (e) {
+        editor = e.create("[id=content]", {
+            width: "800px",
+            height: "300px",
+            "filterMode": "true",//是否过滤html代码   true：是    false：否
+            "resizeType": "2",//是否可以改变editor大小，0：不可以   1：可改高   2：无限制
+            "themeType": "default",//设置外观 themes文件夹：common、default、qq、simple
+            afterBlur: function () {
+                this.sync();
+            }//获取编辑器内容
+        });
+    });
+</script>
+<script type="text/javascript">
+var banner=[],thumb='{$data['thumb']}';
+$('#submit').click(function(){
+  var title = $('#title').val();
+  var scale = $('#scale').val();
+  var count = $('#count').val();
+
+  var statu = $("input[name='statu']:checked").val();
+  var endtime = $('#endtime').val();
+  var id = $('#id').val();
+ 
+  if(title == ''){
+    layer.msg('请输入名称');
+    return false;
+  }
+  if(scale == ''){
+    layer.msg('请输入兑换比例');
+    return false;
+  }
+  
+   if(count == ''){
+    layer.msg('请输入兑换总数');
+    return false;
+  }
+   
+
+  
+  if(id == ''){
+     if(banner.length<1){
+    layer.msg('请上传图片');
+    return false;
+  }
+  }
+ 
+ 
+ 
+  var id =$('#id').val();
+  var load = layer.load(1);
+  $.ajax({
+    url:'__APP__/admin/shopduihuan/addapp',
+    type:'post',
+    dataType:'json',
+    data:{
+      title:title,
+      scale:scale,
+      count:count,
+      endtime:endtime,
+      statu:statu,
+      thumb:thumb,
+      id:id,
+      banner:banner
+    },success:function(res){
+      layer.close(load);
+        if(res.code==0){
+           layer.open({
+              type: 1,
+              title: '提示',
+              icon: 1,
+              content: '添加成功',
+              time:2000 ,
+              skin: 'layui-layer-molv',
+              closeBtn: 0,
+              area: ['300px', '150px'],
+              end:function(){
+                window.location.href= '__APP__/admin/shopduihuan/index';
+              }
+            });
+        }else{
+           layer.open({
+              type: 1,
+              title: '提示',
+              icon: 1,
+              content: '添加失败',
+              time:2000 ,
+              skin: 'layui-layer-molv',
+              closeBtn: 0,
+              area: ['300px', '150px'],
+              end:function(){
+               // window.location.href=location;
+              }
+            });
+        }
+    }
+  })
+})
+layui.use(['form', 'layedit', 'laydate','upload'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+    var $ = layui.jquery
+  ,upload = layui.upload;
+  var date = laydate.render({ 
+              elem: '#endtime'
+              ,type: 'datetime'
+            });
+ var uploadInst = upload.render({
+    elem: '#banner'
+    ,url: '__APP__/admin/base/uploadimg'
+    , multiple:true
+    ,number:3
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      // obj.preview(function(index, file, result){
+      //   $('#demo1').attr('src', result); //图片链接（base64）
+      // });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code==0){
+       
+        var img = '<img src="__PUBLIC__/uploads/'+res.url+'" style="width:80px;height:50px">';
+        $('.banner').append(img);
+        banner.push(res.url);
+        console.log(banner);
+      }
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  var uploadInst1 = upload.render({
+    elem: '#thumb'
+    ,url: '__APP__/admin/base/uploadimg'
+    , multiple:true
+    ,number:1
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      // obj.preview(function(index, file, result){
+      //   $('#demo1').attr('src', result); //图片链接（base64）
+      // });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code==0){
+       
+        var img = '<img src="__PUBLIC__/uploads/'+res.url+'" style="width:80px;height:50px">';
+        $('.thumb').html(img);
+        thumb=res.url;
+        console.log(img);
+      }
+      if(res.code > 0){
+        return layer.msg(res.msg);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  //监听提交
+  form.on('submit(demo1)', function(){
+layer.open({
+  type: 1,
+  skin: 'layui-layer-molv',
+  closeBtn: 0, 
+  anim: 2,
+  area: ['300px', '150px'],
+  shadeClose: false, 
+  content: '加载中，请耐心等待...',
+  title:' ',
+  time:2000 ,
+   end: function(){
+    layer.open({
+      type: 1,
+      title: ' ',
+	  icon: 1,
+      content: '添加成功',
+	  time:2000 ,
+	   skin: 'layui-layer-molv',
+       closeBtn: 0,
+	   area: ['300px', '150px'],
+    });
+  }
+});
+
+    /*layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })*/
+    return false;
+  });
+});
+</script>

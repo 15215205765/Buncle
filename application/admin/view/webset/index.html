@@ -1,0 +1,227 @@
+{include file="public/left_nav" /}
+<style type="text/css">
+    table{
+   
+    table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+}
+td{
+    width:100%;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+</style>
+<div class="layui-body" style="background-color:#f2f2f2">
+    <div style="padding: 10px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <form class="layui-form" action="">
+                           
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">图片：</label>
+                                <div class="layui-upload">
+                                    <button type="button" class="layui-btn" id="test1" style="background-color:#ddd;color:#333">选择图片</button>
+                                    <div class="layui-upload-list" id="thumb" style="margin: 10px 105px;"> 
+                                   
+                                    <img class="layui-upload-img" id="demo1" src="__PUBLIC__/uploads/{$data['thumb']}" style="">
+                                  
+                                    <!-- <p style="color:#999;font-size:12px">*建议图片宽高80*50</p> -->
+                                        <p id="demoText"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                             <div class="layui-form-item">
+                                <label class="layui-form-label">LOGO：</label>
+                                <div class="layui-upload">
+                                    <button type="button" class="layui-btn" id="test2" style="background-color:#ddd;color:#333">选择图片</button>
+                                    <div class="layui-upload-list" id="logo" style="margin: 10px 105px;"> 
+                                   
+                                    <img class="layui-upload-img" id="demo2" src="__PUBLIC__/uploads/{$data['logo']}" style="width:100%;">
+                                  
+                                    <!-- <p style="color:#999;font-size:12px">*建议图片宽高80*50</p> -->
+                                        <p id="demoText"></p>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <div class="layui-btn site-demo-layedit btn-chouj-choose" id="submit">保存</div>
+                                   <input type="hidden" id="id" value="{$data['id']}" name="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var thumf='{$data['thumb']}',logo='{$data['logo']}';
+
+layui.use(['form', 'layedit', 'laydate','upload'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+    var $ = layui.jquery
+  ,upload = layui.upload;
+ var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '__APP__/admin/base/uploadimg'
+    , multiple:true
+    ,number:1
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      // obj.preview(function(index, file, result){
+      //   $('#demo1').attr('src', result); //图片链接（base64）
+      // });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code==0){
+       
+        var img = '<img src="__PUBLIC__/uploads/'+res.url+'" style="width:80px;height:50px">';
+        $('#thumb').html(img);
+        thumb=res.url;
+        console.log(img);
+      }
+      if(res.code > 0){
+        return layer.msg(res.msg);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+
+  var uploadInst1 = upload.render({
+    elem: '#test2'
+    ,url: '__APP__/admin/base/uploadimg'
+    , multiple:true
+    ,number:1
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      // obj.preview(function(index, file, result){
+      //   $('#demo1').attr('src', result); //图片链接（base64）
+      // });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code==0){
+       
+        var img = '<img src="__PUBLIC__/uploads/'+res.url+'" style="width:80px;height:50px">';
+        $('#logo').html(img);
+        logo=res.url;
+        console.log(img);
+      }
+      if(res.code > 0){
+        return layer.msg(res.msg);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+
+
+ $('#submit').click(function(){
+  
+  var id = $('#id').val();
+  var load = layer.load(1);
+  $.ajax({
+    url:'__APP__/admin/webset/addapp',
+    type:'post',
+    dataType:'json',
+    data:{
+      id:id,
+      thumb:thumb,
+      logo:logo
+     
+    },success:function(res){
+      layer.close(load);
+        if(res.code==0){
+           layer.open({
+              type: 1,
+              title: '提示',
+              icon: 1,
+              content: '添加成功',
+              time:2000 ,
+              skin: 'layui-layer-molv',
+              closeBtn: 0,
+              area: ['300px', '150px'],
+              end:function(){
+                window.location.href= '__APP__/admin/webset/index';
+              }
+            });
+        }else if(res.code==2){
+            layer.msg(res.msg);
+        }else{
+           layer.open({
+              type: 1,
+              title: '提示',
+              icon: 1,
+              content: '添加失败',
+              time:2000 ,
+              skin: 'layui-layer-molv',
+              closeBtn: 0,
+              area: ['300px', '150px'],
+              end:function(){
+               // window.location.href=location;
+              }
+            });
+        }
+    }
+  })
+})
+  //监听提交
+  form.on('submit(demo1)', function(){
+layer.open({
+  type: 1,
+  skin: 'layui-layer-molv',
+  closeBtn: 0, 
+  anim: 2,
+  area: ['300px', '150px'],
+  shadeClose: false, 
+  content: '加载中，请耐心等待...',
+  title:' ',
+  time:2000 ,
+   end: function(){
+    layer.open({
+      type: 1,
+      title: ' ',
+      icon: 1,
+      content: '添加成功',
+      time:2000 ,
+       skin: 'layui-layer-molv',
+       closeBtn: 0,
+       area: ['300px', '150px'],
+    });
+  }
+});
+
+    /*layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })*/
+    return false;
+  });
+});
+</script>

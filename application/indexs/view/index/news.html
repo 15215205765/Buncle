@@ -1,0 +1,122 @@
+{include file="public/header" /}
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/index/index/news.css">
+<div class="main" style="margin-bottom:70px;">
+	{volist name="list" id="item"}
+	<div class="list">
+		<span class="time">
+			{$item['time']}
+		</span>
+		<div class="title">
+			{$item['title']}
+		</div>
+		<div class="content">
+			{$item['content']}
+		</div>
+		<div class="bottom">
+			<div class="bottom-left">
+				<div class="dianzan" onclick="dianzan({$item['id']},1,this)">
+					<img src="__PUBLIC__/static/images/dianzan.png">
+					<div>0</div>
+				</div>
+				<div class="dianzan"  onclick="dianzan({$item['id']},2,this)">
+					<img src="__PUBLIC__/static/images/diancai.png">
+					<div>0</div>
+				</div>
+			</div>
+			<div class="bottom-right share" onclick="share({$item['id']})">
+				<img src="__PUBLIC__/static/images/fenxiang.png">
+				<div>分享</div>
+			</div>
+		</div>
+	</div>
+	{/volist}
+		<div class="share-img">
+			<img src="" id="share">
+		</div>
+</div>
+{include file="public/footer" /}
+<script type="text/javascript">
+
+	var str = '';
+var page='';
+if(page=="") page=1; 
+var stop=true;//触发开关，防止多次调用事件 
+$(window).scroll( function(event){
+//当内容滚动到底部时加载新的内容 100当距离最底部100个像素时开始加载. 
+if ($(this).scrollTop() + $(window).height() + 10 >= $(document).height() && $(this).scrollTop() > 10) {
+
+if(stop==true){ 
+stop=false; 
+//var canshu="page/"+page+";	
+var url = "__APP__/index/index/newsload";
+var parm = {'page':page};
+page=page+1;//当前要加载的页码 
+//加载提示信息 
+var load = layer.load(3);
+$.post(url,parm,function(res){
+	layer.close(load);
+if( res.code == 1 ) {
+layer.msg('已经到底了~~');
+return;
+}
+
+	
+
+$('.main').append(res.html);
+stop=true; 
+},'JSON') 
+}
+}	
+});
+
+
+function dianzan(id,types,en){
+	$.ajax({
+		url:'__APP__/index/index/dianzan',
+		type:'post',
+		dataType:'json',
+		data:{
+			id:id,
+			type:types
+		},
+		success:function(res){
+			if(res.code== 0){
+				var number = parseInt($(en).find('div').html());
+				$(en).find('div').html(number+1);
+				if(types==1){
+					$(en).find('img').attr('src','__PUBLIC__/static/images/yidianzan.png')
+
+				}else{
+					$(en).find('img').attr('src','__PUBLIC__/static/images/yidiancai.png')
+				}
+				
+			}
+		}
+	})
+}
+function share(id){
+
+			var load = layer.load(3);
+			$.ajax({
+				url:'__APP__/index/index/share_news',
+				type:'post',
+				dataType:'json',
+				data:{
+					id:id
+				},
+				success:function(res){
+					layer.close(load);
+					if(res.code==0){
+						$('.share-img').show();
+						$('#share').attr('src','/'+ res.img);
+					}
+				}
+			})
+}
+$('.share-img').click(function(){
+	$(this).hide();
+})
+
+</script>
+</body>
+</html>

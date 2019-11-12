@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+<title>查看物流</title>
+<link href="css/logilst.css" type="text/css" rel="stylesheet">
+<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<!--<script src="js/market.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+	<!--产品图片及名称-->
+	<div id="logist_img">
+		<i></i>
+		<p>伊利安慕希风味酸牛奶原味酸<br>奶 205g*12+4盒/整箱营原味酸原味酸原味酸</p>
+		<span>顺丰快递 77300694551456</span>
+	</div>
+	<div style="width: 11rem;height: 0.4rem;background: #f3f3f3;"></div>
+	<!--物流信息-->
+	<div id="logist_txt">
+		<h3>物流跟踪</h3>
+		<ul></ul>
+		<ol></ol>
+	</div>
+</body>
+<script>
+	//获取屏幕宽度；
+	windWid();
+	function windWid(){
+		var w=$('body').width();
+		$("html").css({"font-size":(w/10)+'px'});
+	}
+	//监听窗口变化
+	$(window).resize(function(){
+		windWid();
+	});
+	
+	//动态添加物流信息
+	var logArry=['已发货','深圳顺丰快递已揽件','快递已到达重庆市南岸区','顺丰快递员：张三 派件中'];
+	for(var i=0;i<logArry.length;i++){
+		if(i===0){
+			$('#logist_txt ol').prepend('<li><i></i></li>');
+			$('#logist_txt ul').prepend('<li><p>'+logArry[i]+'</p></li>');
+		}else{
+			$('#logist_txt ol').prepend('<li><i></i><span></span></li>');
+			$('#logist_txt ul').prepend('<li><p>'+logArry[i]+'</p></li>');
+		}
+	}	
+</script>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>绑定手机</title>
+	<meta http-equiv="content-type" content="textml;charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/user/mobile.css">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<script src="__PUBLIC__/jquery.min.js"></script>
+	<script src="__PUBLIC__/layer/layer.js"></script> 
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<script type="text/javascript" src='https://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script> 
+	  <script>
+     wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: '{$signPackage["appId"]}',  
+                timestamp: '{$signPackage["timestamp"]}',  
+                nonceStr: '{$signPackage["nonceStr"]}',  
+                signature: '{$signPackage["signature"]}',   
+                jsApiList: [
+                    'checkJsApi',  
+                    'onMenuShareTimeline',  
+                    'onMenuShareAppMessage',  
+                    'onMenuShareQQ',  
+                    'onMenuShareWeibo',  
+                    'onMenuShareQZone',
+                    'hideMenuItems'  ] // 必填，需要使用的JS接口列表 这里填写需要用到的微信api openlocation为使用微信内置地图查看位置接口
+            });
+              wx.ready(function () {  
+             
+             
+             wx.hideMenuItems({
+				menuList: [ 
+					'menuItem:share:appMessage',  
+                    'menuItem:share:timeline',  
+                    'menuItem:share:qq',  
+                    'menuItem:share:weiboApp',  
+                    'menuItem:favorite',
+                    'menuItem:share:QZone',
+                    'menuItem:copyUrl',
+                    'menuItem:openWithQQBrowser',
+                    'menuItem:openWithSafari'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+				});
+         })
+
+
+    
+</script>
+</head>
+<body>
+<div class="logo">
+	<img src="__PUBLIC__/static/images/logo.png">
+</div>
+<div class="top">
+	<div class="top-title">
+		绑定手机
+	</div>
+	<div class="top-list">
+		<input type="number" id="mobile" placeholder="输入手机号" name="">
+	</div>
+	<div class="top-list">
+		<input type="number" id="codes" placeholder="输入验证码" name="">
+		<div id="code">获取验证码</div>
+	</div>
+	<div class="top-text">
+		<input type="checkbox" name="">
+		<div>
+			我已阅读并同意《用户协议及隐私政策》
+		</div>
+	</div>
+	<div class="submit">
+		提交绑定
+	</div>
+</div>
+<script type="text/javascript">
+		var iTime = 59;
+	var call = 0;
+var Account;
+var is_see = false;
+var mobile;
+var getcode = true;
+function RemainTime(){
+var iSecond,sSecond="",sTime="";
+if (iTime >= 0){
+    iSecond = parseInt(iTime%60);
+    iMinute = parseInt(iTime/60)
+    if (iSecond >= 0){
+        if(iMinute>0){
+            sSecond = iMinute + "分" + iSecond + "秒";
+        }else{
+            sSecond = iSecond + "s";
+        }
+    }
+    sTime=sSecond;
+    if(iTime==0){
+        clearTimeout(Account);
+        sTime='获取验证码';
+        iTime = 59;
+        $('#code').attr('data-color','1');
+        $('#code').css('color','#4769F4');
+        getcode = true;
+        // $('#getcode').disabled = false;
+    }else{
+        Account = setTimeout("RemainTime()",1000);
+        $('#code').css('color','#aaa');
+        iTime=iTime-1;
+    }
+}else{
+    sTime='没有倒计时';
+}
+$('#code').html(sTime);
+}
+$
+$('#code').click(function(){
+	
+    if(iTime<59){
+        layer.msg('请勿重复提交');
+        return false;
+    }else{
+         mobile = $('#mobile').val();
+         var pattern = /^1[3456789]\d{9}$/; 
+
+        if(pattern.test(mobile)==false){
+            layer.msg('输入正确的手机号');
+            return false;
+        }
+    if(getcode!==true){
+		return false;
+	}
+	getcode=false;
+       
+	    $.ajax({
+            url:'__APP__/index/user/checkmobile',
+            type:'post',
+            dataType:'json',
+            data:{
+                mobile:mobile
+            },
+            success:function(t){
+                if(t.code==0){
+                        $.ajax({
+                            url:'/sms/smsyzm.php',
+                            type:'post',
+                            dataType:'json',
+                            data:{
+                                mobile:mobile,
+                                tempid:'464457'
+                            },
+                            complete:function(res){
+                                layer.msg('发送成功');
+                                RemainTime();
+                            }
+                        })
+                }else{
+                    layer.msg(t.msg,{shift:-1},function(){
+                        $('#mobile').focus();
+                    })
+                }
+            }
+        })
+               
+            
+    
+    }
+    
+})
+
+$('.submit').click(function(){
+	var mobiles = $('#mobile').val();
+	var code = $('#codes').val();
+	if(mobiles!=mobile){
+		layer.msg('电话号码已改变，请重新获取验证码');
+		return false;
+	}
+	if(code==''){
+		layer.msg('请输入验证码');
+		return false;
+	}
+	var load = layer.load(3);
+	$.ajax({
+		url:'__APP__/index/user/addmobile',
+		type:'post',
+		dataType:'json',
+		data:{
+			mobile:mobile,
+			code:code
+		},
+		success:function(res){
+			layer.close(load);
+			if(res.code==0){
+				layer.msg(res.msg,{shift:-1},function(){
+					window.location.href='__APP__/index/user';
+				})
+			}else{
+				layer.msg(res.msg);
+			}
+		}
+	})
+})
+</script>
+</body>
+</html>

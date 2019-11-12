@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BUNCLE应用商店</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css">
+</head>
+{include file="public/unshare" /}
+<body>
+<!--head-->
+<div id="max_head">
+<div class="top_txt">
+<ul>
+<li><b>收录数据</b></li>
+<li><span>截止目前已收录  2000+  区块链应用</span></li>
+</ul>
+</div>
+<div class="user_img"><a href="__APP__/test/user"><img src="{$user['avatar']}"></a></div>
+</div>
+<!--焦点轮播图-->
+<div id="max_banner">
+<figure id="content_slider" class="swipslider">
+            <ul class="sw-slides">
+            {volist name="banner" id="item"}
+              <li class="sw-slide">
+                <figure class="wanted sw-content">
+                  <a href="{$item['url']}"><img src="__PUBLIC__/uploads/{$item['img']}" alt="Mafia Boss"></a>
+                </figure>
+              </li>
+              {/volist}
+       </ul>
+  </figure>
+</div>
+<!--公告-->
+<div id="max_gonggao">
+  <div class="gonggao_ico"><a href="Template/gonggao_list.html"><img src="__PUBLIC__/static/images/2/gonggao.png"></a></div>
+  <div class="gonggao_list">
+  <ul class="line">
+  {volist name="gonggao" id="item"}
+  <li style="margin-top: 0px; "><a href="__APP__/test/gonggao/detail?id={$item['id']}">{$item['title']}</a></li>
+  {/volist}
+  </ul>
+</div>
+</div>
+<!--行情信息-->
+<div id="max_hangqing" style="display:none;">
+<div class="hangqing">
+<ul>
+<li>
+<b>BTC/USDT</b>
+<a class="red">10101.32</a>
+<a class="green">-0.23%</a>
+<span>≈¥70652.21</span>
+</li>
+<li>
+<b>BTC/USDT</b>
+<a class="red">10101.32</a>
+<a class="green">-0.23%</a>
+<span>≈¥70652.21</span>
+</li>
+<li>
+<b>BTC/USDT</b>
+<a class="red">10101.32</a>
+<a class="green">-0.23%</a>
+<span>≈¥70652.21</span>
+</li>
+</ul>
+</div>
+</div>
+<!--应用下载列表-->
+<!--热门应用-->
+<div id="re_app">
+<div class="list_title"><b>热门应用</b><a href="__APP__/test/app/hot?is_hot=1">查看更多</a></div>
+<ul>
+{volist name="list['remen']" id="item"}
+<a href="__APP__/test/app/detail?id={$item['id']}"><li><img src="__PUBLIC__/uploads/{$item['logo']}"><b>{$item['title']}</b></li></a>
+{/volist}
+</ul>
+</div>
+<hr></hr>
+<div id="list_style">
+<div class="list_title"><b>最新收录</b><a href="__APP__/test/app/hot?is_recommend=1">查看更多</a></div>
+<ul>
+{volist name="list['zuixin']" id="item"}
+<li>
+<div class="app_icon"><img src="__PUBLIC__/uploads/{$item['logo']}"></div>
+<div class="app_content">
+<div class="app_txt">
+<b>{$item['title']}</b>
+<span>{$item['short_title']}</span>
+</div>
+<div class="app_download"><a href="__APP__/test/app/detail?id={$item['id']}">下载</a></div>
+</div>
+</li>
+{/volist}
+</ul>
+</div>
+
+<hr></hr>
+
+<!--交易所列表-->
+<div id="list_style">
+<div class="list_title"><b>交易所</b><a href="__APP__/test/app/hot?agent=1">查看更多</a></div>
+<ul>
+
+{volist name="list['jiaoyisuo']" id="item"}
+<li>
+<div class="app_icon"><img src="__PUBLIC__/uploads/{$item['logo']}"></div>
+<div class="app_content">
+<div class="app_txt">
+<b>{$item['title']}</b>
+<span>{$item['short_title']}</span>
+</div>
+<div class="app_download"><a href="__APP__/test/app/detail?id={$item['id']}">下载</a></div>
+</div>
+</li>
+{/volist}
+
+
+</ul>
+</div>
+<hr></hr>
+<!--媒体资讯列表-->
+<div id="list_style">
+<div class="list_title"><b>媒体资讯</b><a href="__APP__/test/app/hot?agent=2">查看更多</a></div>
+<ul>
+{volist name="list['meiti']" id="item"}
+<li>
+<div class="app_icon"><img src="__PUBLIC__/uploads/{$item['logo']}"></div>
+<div class="app_content">
+<div class="app_txt">
+<b>{$item['title']}</b>
+<span>{$item['short_title']}</span>
+</div>
+<div class="app_download"><a href="__APP__/test/app/detail?id={$item['id']}">下载</a></div>
+</div>
+</li>
+{/volist}
+
+</ul>
+</div>
+<hr></hr>
+<!--钱包列表-->
+<div id="list_style">
+<div class="list_title"><b>钱包</b><a href="__APP__/test/app/hot?agent=3">查看更多</a></div>
+<ul>
+{volist name="list['qianbao']" id="item"}
+<li>
+<div class="app_icon"><img src="__PUBLIC__/uploads/{$item['logo']}"></div>
+<div class="app_content">
+<div class="app_txt">
+<b>{$item['title']}</b>
+<span>{$item['short_title']}</span>
+</div>
+<div class="app_download"><a href="__APP__/test/app/detail?id={$item['id']}">下载</a></div>
+</div>
+</li>
+{/volist}
+
+
+
+</ul>
+</div>
+<hr></hr>
+
+<!--其他应用列表-->
+<div id="list_style">
+<div class="list_title"><b>其他应用</b><a href="__APP__/test/app/hot?agent=4">查看更多</a></div>
+<ul>
+
+{volist name="list['qita']" id="item"}
+<li>
+<div class="app_icon"><img src="__PUBLIC__/uploads/{$item['logo']}"></div>
+<div class="app_content">
+<div class="app_txt">
+<b>{$item['title']}</b>
+<span>{$item['short_title']}</span>
+</div>
+<div class="app_download"><a href="__APP__/test/app/detail?id={$item['id']}">下载</a></div>
+</div>
+</li>
+{/volist}
+
+
+</ul>
+
+</div>
+<div  style="width:100%;height:0.4rem;"></div>
+<div id="list_style" style="padding-top: 0.8rem;border-top: 1px solid #e1e1e1;">
+<div class="list_title "><b>快速链接</b></div>
+<div style="width: 100%;height: 0.5rem; "></div>
+<a href="__APP__/test/app/upload" class="list_href" style="font-size:0.5rem;color:#0166fe;margin:0.7rem 0 0.5rem 0">提交应用</a><br>
+<div style="width: 100%;height: 0.6rem; "></div>
+<a href="__APP__/test/user/answer" style="font-size:0.5rem;color:#0166fe;margin:0.5rem 0 0.5rem 0;">区块链100问</a>
+
+</div>
+{include file="public/footer" /}
+<!--底部导航-->
+
+
+<script type="text/javascript" src="__PUBLIC__/style/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/style/swipeslider.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+    $(".line").slideUp();//公告滚动调用
+      //////////////////////////////////////////
+      //焦点图滚动调用
+          $('#full_feature').swipeslider();
+          $('#content_slider').swipeslider({
+            transitionDuration: 600,
+            autoPlayTimeout: 10000,
+            sliderHeight: '400px'
+          });
+          $('#responsiveness').swipeslider();
+          $('#customizability').swipeslider({
+            transitionDuration: 1500, 
+            autoPlayTimeout: 4000, 
+            timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)',
+            sliderHeight: '30%'});
+    })
+  </script>
+</body>
+</html>

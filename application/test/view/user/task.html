@@ -1,0 +1,37 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+<meta name="viewport"content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>任务中心</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css">
+{include file="public/unshare" /}
+</head>
+
+<body>
+<div id="all_bg">
+<div id="APP_list_top" style=" border:0;">
+ <div class="list_top_back"></div>
+  <b style=" color:#FFF"></b>
+</div>
+<div class="yaoqing_title_bg" style="background:url(/public/static/images/2/renwu_top.png)no-repeat top center;background-size:100%;"></div>
+<div class="renwu_txt">
+<b onclick="window.location.href='__APP__/indexs/index/add_notice'">BUNCLE任务中心</b>
+<span>更多任务解锁中，敬请期待...</span>
+</div>
+<div class="renwu_txt_list">
+<ul>
+<li><h3>邀请邀10人</h3><b>奖励500UNCLE</b>{if $count<10} <a class="button_style" >{$count}/10</a>{else /}<a class="button_style"  style="background:#95999e;" >已完成</a>{/if}</li>
+<li><h3>绑定手机</h3><b>奖励10UNCLE</b>{switch name="member['mobile']"}
+		    {case value=""}<a class="button_style" href="__APP__/test/user/mobile">去完成</a> {/case}
+		    
+		    {default /}<a class="button_style"  style="background:#95999e;" >已完成</a> {/switch}</li>
+<li><h3>微信登录</h3><b>奖励777UNCLE</b><a class="button_style"  style="background:#95999e;" >已完成</a></li>
+</ul>
+<div class="meiyou">没有更多了！</div>
+</div>
+
+</div>
+
+</body>
+</html>

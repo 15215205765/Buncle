@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>添加快讯</title>
+	 <meta http-equiv="content-type" content="textml;charset=utf-8"/>
+	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	  <meta charset="UTF-8">
+	  <meta name="Generator" content="EditPlus®">
+	  <meta name="Author" content="">
+	  <meta name="Keywords" content="">
+	  <meta name="Description" content="">
+
+<script type="text/javascript" src="__PUBLIC__/jquery.min.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script> 
+<script src="__PUBLIC__/layui/layui.js"></script> 
+<style type="text/css">
+	body{
+		margin:0;
+		padding: 0;
+	}
+	.list{
+		width: 96%;
+		padding: 0 2%;
+	}
+	.list-title{
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+	}
+	.list-content{
+		width: 100%;
+	}
+	.list-content textarea{
+		border-radius: 5px;
+		width: 98%;
+		height: 100px;
+	}
+	.submit{
+		width: 80%;
+		margin-left: 10%;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background: #1e2ad6;
+    	box-shadow: 4px 4px 2px #0a0a0a;
+    	border-radius: 5px;
+    	color: #fff;
+    	margin-top: 20px;
+	}
+</style>
+</head>
+<body>
+	<div class="list">
+		<div class="list-title">
+			标题
+		</div>
+		<div class="list-content">
+			<textarea placeholder="快讯标题" id="title"></textarea>
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			内容
+		</div>
+		<div class="list-content">
+			<textarea placeholder="快讯内容" id="content"></textarea>
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			时间
+		</div>
+		<div class="list-content">
+			<input type="date" name="" id="date">-<input type="time" name="" id="time">
+		</div>
+	</div>
+	<div class="submit">
+		提交
+	</div>
+</body>
+<script type="text/javascript">
+	$('.submit').click(function(){
+		var title = $('#title').val();
+		var content = $('#content').val();
+		var date = $('#date').val();
+		var time = $('#time').val();
+		if(title == ''){
+			layer.msg('请输入标题');
+			return false;
+		}
+		if(content == ''){
+			layer.msg('请输入内容');
+			return false;
+		}
+		$.ajax({
+			url:'__APP__/index/index/addinfomation',
+			type:'post',
+			dataType:'json',
+			data:{
+				title:title,
+				content:content,
+				date:date,
+				time:time
+			},
+			success:function(res){
+				if(res.code==0){
+					layer.msg(res.msg,{shift:-1},function(){
+						window.location.href='__APP__/index/index/news';
+					})
+				}else{
+					layer.msg(res.msg);
+				}
+			}
+		})
+	})
+</script>
+</html>

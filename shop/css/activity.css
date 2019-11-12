@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{padding: 0;margin: 0;list-style: none;text-decoration: none;}
+body{width: 100%; color: #333;font-family:"Adobe 黑体 Std R";overflow-x: hidden;background:#f4f4f4 url(../img/activity/bg_img.png)  center -1rem no-repeat;background-size: 100% auto;}
+/*===产品展示样式=====*/
+
+#act_box{width: 8.6rem;height: auto;margin: 2.1rem auto 0 auto;border-radius: 0.4rem;overflow: hidden; background: #fff;}
+#act_box i{ position: relative;top: -0.03rem; display: block;width: 8.6rem;height: 1.8rem;background: url(../img/activity/title.png) center no-repeat;background-size: 100% auto;}
+#act_box .new_title{width: 8.6rem;height: auto;}
+#act_box .new_title .title{width: 3rem;height: 0.6rem;margin: 1rem auto 0.6rem auto; background: url(../img/activity/title_02.png)  center no-repeat;background-size: 100% auto;}
+#act_box .new_title .title1{background: url(../img/activity/title_01.png)  center no-repeat;background-size: 100% auto;}
+#act_box .new_title ul{width: 7.5rem;margin: 0.7rem auto;}
+#act_box .new_title ul li{width: 7.5rem;height: 3.1rem;margin: 0.4rem 0; background: url(../img/activity/baner.png) center no-repeat;background-size: 100% auto;}
+#act_box .new_title ul li a{display: block;width: 2.3rem;height: 0.72rem;background: #0a3ca1;border-radius: 1.6rem;font-size: 0.36rem;color: #fff; text-align: center;line-height: 0.72rem;margin: 0 auto;position: relative;top: 1.19rem;}
+
+

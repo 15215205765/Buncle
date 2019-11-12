@@ -1,0 +1,203 @@
+{include file="public/left_nav" /}
+<style type="text/css">
+    table{
+   
+    table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+}
+td{
+    width:100%;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+</style>
+<div class="layui-body" style="background-color:#f2f2f2">
+    <div style="padding: 10px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        
+                        <div class="layui-form-item"> 
+                             <a style="float: left;margin-right: 10px;" class="layui-btn  btn-chouj-choose layui-btn-sm layui-btn-normal" href="__APP__/admin/shopgoodss/add" style="color:#fff">添加</a>
+                             
+                        </div>
+                        
+                        <div class="layui-form">
+                            <table class="layui-table" style="table-layout:fixed;" id="test" lay-filter="test">
+                            <thead>
+                            	<th style="width:30px;">id</th>
+                            	<th>图片</th>
+                                <th>标题</th>
+                            	<th  style="width:100px;">价格</th>
+                            	<th style="width:50px;">原价</th>
+                                <th style="width:50px;">UBCLE</th>
+                                <th style="width:50px;">类别</th>
+                                <th style="width:50px;">库存</th>
+                                <th style="width:50px;">是否推荐</th>
+                            	<th>上传时间</th>
+                               
+                                <th>状态</th>
+                                <th>操作</th>
+                            </thead>
+                            <tbody>
+                            {volist name='list' id='item'}
+                            <tr>
+                            	<td>{$item['id']}</td>
+                            	<td><img src="__PUBLIC__/uploads/{$item['thumb']}"></td>
+                            	<td>{$item['title']}</td>
+                            	<td>{$item['price']}</td>
+                                <td>{$item['oldprice']}</td>
+                                <td>{$item['uncle']}</td>
+                                 <td>
+                                {switch name="$item['type']"}
+                                        {case value="0"}
+                                            虚拟
+                                        </div>
+                                        {/case}
+                                        
+                                        {default /}
+                                     实物
+                                    {/switch}
+                                </td>
+                               
+                                <td>{$item['stock']}</td>
+                               <td>
+                                {switch name="$item['type']"}
+                                        {case value="0"}
+                                           否
+                                        </div>
+                                        {/case}
+                                        
+                                        {default /}
+                                     是
+                                    {/switch}
+                                </td>
+                            	<td>{$item['createtime']|date="Y-m-d H:i",###}</td>
+                                
+                                <td>
+                                    {switch name="$item['statu']"}
+                                        {case value="0"}
+                                            <button class="layui-btn layui-btn-primary">下架</button><button class="layui-btn tongguo"  data-id="{$item['id']}">上架</button>
+                                        </div>
+                                        {/case}
+                                        
+                                        {default /}
+                                       <button class="layui-btn layui-btn-primary">上架</button><button href="__APP__/admin/app/add?id={$item['id']}" class="layui-btn  layui-btn-danger yingcang" data-id="{$item['id']}">下架</button>
+                                    {/switch}
+                                </td>
+                                <td><a href="__APP__/admin/shopgoodss/add?id={$item['id']}" class="layui-btn">修改</a> <button data-id='{$item['id']}' class="layui-btn layui-btn-danger del">删除</button></td>
+                            </tr>
+                            {/volist}
+                            </tbody>
+                            </table>
+                            {$list->render()}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.del').each(function(){
+        $(this).click(function(){
+            var id = $(this).attr('data-id');
+            layer.confirm('确认删除该数据吗？', {
+              btn: ['确定', '取消'] //可以无限个按钮
+              
+            }, function(index, layero){
+                $.ajax({
+                    url:'__APP__/admin/shopgoodss/del',
+                    type:'post',
+                    dataType:'json',
+                    data:{
+                        id:id
+                    },
+                    success:function(res){
+                        layer.close(index);
+                        if(res.code==0){
+                            layer.msg('删除成功',{shift:-1},function(){
+                                window.location.href=location;
+                            })
+                        }else{
+                            layer.msg('删除失败');
+                        }
+                    }
+                })
+            }, function(index){
+              layer.close(index);
+            });
+        })
+    })
+        $('.tongguo').each(function(){
+        $(this).click(function(){
+            var id = $(this).attr('data-id');
+            layer.confirm('确认通过吗？', {
+              btn: ['确定', '取消'] //可以无限个按钮
+              
+            }, function(index, layero){
+                $.ajax({
+                    url:'__APP__/admin/shopgoodss/tongguo',
+                    type:'post',
+                    dataType:'json',
+                    data:{
+                        id:id
+                    },
+                    success:function(res){
+                        layer.close(index);
+                        if(res.code==0){
+                            layer.msg('操作成功',{shift:-1},function(){
+                                window.location.href=location;
+                            })
+                        }else{
+                            layer.msg('操作失败');
+                        }
+                    }
+                })
+            }, function(index){
+              layer.close(index);
+            });
+        })
+    })
+    $('.yingcang').each(function(){
+        $(this).click(function(){
+            var id = $(this).attr('data-id');
+            layer.confirm('确认隐藏吗？', {
+              btn: ['确定', '取消'] //可以无限个按钮
+              
+            }, function(index, layero){
+                $.ajax({
+                    url:'__APP__/admin/shopgoodss/yingcang',
+                    type:'post',
+                    dataType:'json',
+                    data:{
+                        id:id
+                    },
+                    success:function(res){
+                        layer.close(index);
+                        if(res.code==0){
+                            layer.msg('操作成功',{shift:-1},function(){
+                                window.location.href=location;
+                            })
+                        }else{
+                            layer.msg('操作失败');
+                        }
+                    }
+                })
+            }, function(index){
+              layer.close(index);
+            });
+        })
+    })
+    layui.use(['form', 'layedit', 'laydate','upload'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+    var $ = layui.jquery
+  ,upload = layui.upload;
+})
+</script>

@@ -10,6 +10,12 @@ class App extends Controller
     	 $app = model('AppList');
         $list = $app->search();
         $this->assign('list',$list);
+        $keyword = request()->get('keyword');
+        $is_show = request()->get('is_show');
+        $agent = request()->get('agent');
+        $this->assign('keyword',$keyword);
+        $this->assign('is_show',$is_show);
+        $this->assign('agent',$agent);
         return $this->fetch('index');
        
        
@@ -29,5 +35,13 @@ class App extends Controller
    public function del(){
     $app = model('AppList');
     return $app->del();
+   }
+   public function tongguo(){
+    $app = model('AppList');
+    return $app->tongguo();
+   }
+   public function yingcang(){
+    $app = model('AppList');
+    return $app->yingcang();
    }
 }

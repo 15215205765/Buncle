@@ -90,6 +90,14 @@ th {
     <div class="layui-side-scroll">
         <ul class="layui-nav layui-nav-tree"  lay-filter="test" id="ul">
             <li class="layui-nav-item {:request()->controller()=='App' ? 'active' : ''}"><a href="__APP__/admin/app/index"><i class="layui-icon mar_ri layui-icon-home"></i>APP管理</a></li>
+            <li class="layui-nav-item {:request()->controller()=='Lunbo' ? 'active' : ''}"><a href="__APP__/admin/lunbo/index"><i class="layui-icon mar_ri layui-icon-home"></i>轮播图</a></li>
+            <li class="layui-nav-item {:request()->controller()=='Hot' ? 'active' : ''}"><a href="__APP__/admin/hot/index"><i class="layui-icon mar_ri layui-icon-home"></i>热门应用</a></li>
+            <li class="layui-nav-item {:request()->controller()=='Reco' ? 'active' : ''}"><a href="__APP__/admin/reco/index"><i class="layui-icon mar_ri layui-icon-home"></i>推荐应用</a></li>
+            <li class="layui-nav-item {:request()->controller()=='Gonggao' ? 'active' : ''}"><a href="__APP__/admin/gonggao/index"><i class="layui-icon mar_ri layui-icon-home"></i>公告</a></li>
+            <li class="layui-nav-item {:request()->controller()=='Hotkey' ? 'active' : ''}"><a href="__APP__/admin/hotkey/index"><i class="layui-icon mar_ri layui-icon-home"></i>热门搜索</a></li>
+            <li class="layui-nav-item {:request()->controller()=='WebApps' ? 'active' : ''}"><a href="__APP__/admin/webapps/index"><i class="layui-icon mar_ri layui-icon-home"></i>官网App</a></li>
+            <li class="layui-nav-item {:request()->controller()=='Mbtc' ? 'active' : ''}"><a href="__APP__/admin/mbtc/index"><i class="layui-icon mar_ri layui-icon-home"></i>兑换MBTC</a></li>
+           
            
              <!--  <li class="layui-nav-item "><a href="javascript:;"><i class="layui-icon mar_ri layui-icon-user"></i>拼团管理</a>
               <dl class="layui-nav-child" style="background-color:#393D49!important">

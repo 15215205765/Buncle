@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta name="viewport"content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>搜索</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css">
+{include file="public/unshare" /}
+</head>
+
+<body>
+<div id="max_sousuo">
+<h1>搜索</h1>
+<form action="__APP__/test/app/hot" method="get">
+<div class="sousuo_input"><input type="search" name="keyword" class="sousuo_input_style" value="" placeholder="输入关键词"></div>
+</form>
+<div class="sousuo_ad" ><a href="{$banner[0]['url']}"><img src="__PUBLIC__/uploads/{$banner[0]['img']}" ></a></div>
+<h1>热门搜索</h1>
+<div class="renmen_sousuo">
+<ul>
+{volist name="keyword" id="item"}
+<li onclick="window.location.href='__APP__/test/app/hot?keyword={$item['key']}'">{$item['key']}</li>
+{/volist}
+</ul>
+</div>
+</div>
+{include file="public/footer" /}
+</body>
+</html>

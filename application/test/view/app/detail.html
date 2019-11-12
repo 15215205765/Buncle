@@ -1,0 +1,80 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta name="viewport"content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>应用下载</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css">
+{include file="public/unshare" /}
+</head>
+
+<body>
+<!--top-->
+{notempty name="data['thumb']"}
+<div id="max_top" style="background:url({$data['thumb']})">
+<div class="main_top">
+  <div class="top_back"><!--<a href="../index.html"><img src="../image/back_icon.png"></a>--></div><!-- <b>APP名称不用可以不填数据</b> --></div>
+</div>
+{/notempty}
+<!--content_title-->
+<div id="max_content_title">
+<div class="app_logo" style="border-radius:30px;width:169px;height:169px;"><img src="__PUBLIC__/uploads/{$data['logo']}"></div>
+<div class="logo_title">
+<ul>
+<li><b>{$data['title']}</b></li>
+<li><span>{$data['short_title']}</span></li>
+<li><a href="{$data['ios']}" class="button_style">苹果</a><a href="{$data['android']}" class="button_style">安卓</a></li>
+</ul>
+</div>
+</div>
+
+<!--APP简介-->
+<div id="max_jianjie">
+<b>简介</b>
+<span>{$data['content']}</span>
+</div>
+
+<!--信息-->
+<div id="max_xinxi">
+<b>信息</b>
+<ul>
+<!-- <li><b>开发商</b><span>MXC  Exchange</span></li>
+<li><b>大小</b><span>26.4M</span></li> -->
+<li><b>类别</b><span> {switch name="data['agent']"}
+                                        {case value="1"}
+                                           交易所
+                                        {/case}
+                                        {case value="2"}
+                                         资讯媒体
+                                        {/case}
+                                        {case value="3"}
+                                         钱包
+                                        {/case}
+                                        {default /}
+                                          区块链项目
+                                    {/switch}</span></li>
+<!-- <li><b>语言</b><span>简体中文和英文</span></li> -->
+<li><b>官网</b><span><a href="{$data['url']}">{$data['url']}</a></span></li>
+</ul>
+</div>
+<!--免责申明-->
+<div id="shenming"><b>免责声明：</b> 
+<span>本平台仅为开发商提供APP的下载安装，APP内的内容和运营相关 事项由APP开发商负责，与本平台无关。</span></div>
+
+<!--应用下载列表-->
+<div id="list_style">
+  <div class="list_title"><b>您可能还喜欢</b><!-- <a>查看更多</a> --></div>
+  <ul>
+  {volist name="data['other']" id="item"}
+    <li>
+      <div class="app_icon"><img src="__PUBLIC__/uploads/{$item['logo']}"></div>
+      <div class="app_content">
+        <div class="app_txt"> <b>{$item['title']}</b> <span>{$item['short_title']}</span> </div>
+        <div class="app_download" onclick="window.location.href='__APP__/test/app/detail?id={$item['id']}'">下载</div>
+      </div>
+    </li>
+    {/volist}
+  </ul>
+</div>
+</body>
+</html>

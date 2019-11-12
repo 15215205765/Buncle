@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BUNCLE区块链应用市场</title>
+	<meta http-equiv="content-type" content="textml;charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/index/public/header.css">
+<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+<script src="__PUBLIC__/jquery.min.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script> 
+<script src="__PUBLIC__/layui/layui.js"></script> 
+<style type="text/css">
+html,body{
+	padding: 0;
+	margin: 0;
+}
+	.logo{
+		width: 100%;
+		margin-top: 20px;
+	}
+	.logo-title{
+		width: 100%;
+		line-height: 30px;
+		text-align: center;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.upload{
+		width: 100px;
+		height: 100px;
+		background: #929292;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.upload img{
+		width: 50px;
+		height: 50px;
+		margin-top: 25px;
+	}
+	.type-list{
+		width: 94%;
+		padding: 0 3%;
+		height: 50px;
+	}
+	.type{
+		width: 25%;
+		text-align: center;
+		float: left;
+	}
+	.type div{
+		float: left;
+		font-size: 16px;
+		font-weight: bold;
+		line-height: 50px;
+	}
+	.type input{
+		float: left;
+		height: 30px;
+		margin-top: 10px;
+	}
+	.list{
+		width: 90%;
+		padding: 0 5%;
+		margin-top: 20px;
+	}
+	.list-title{
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 30px;
+	}
+	.list-input{
+		width: 100%;
+
+	}
+	.list-input input{
+		width: 97%;
+		height: 40px;
+		font-size: 16px;
+		padding-left: 3%;
+		border:1px solid #6f6868;
+		border-radius: 5px;
+		outline: none;
+	}
+	.list-input textarea{
+		width: 97%;
+		height: 80px;
+		font-size: 16px;
+		padding-left: 3%;
+		border:1px solid #6f6868;
+		border-radius: 5px;
+		outline: none;
+	}
+	.submit{
+		width: 60%;
+		margin-left: 20%;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background: #801DAE;
+		color: #fff;
+		font-size: 18px;
+		font-weight: bold;
+		border-radius: 20px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+</style>
+</head>
+<body>
+	<div class="logo">
+		<div class="logo-title">
+			上传LOGO
+		</div>
+		<div class="upload" id="test1">
+			<img src="__PUBLIC__/static/images/upload.png">
+		</div>
+	</div>
+	<div class="type-list">
+		<div class="type">
+			<div>交易所</div>
+			<input type="radio" value="1" name="agent">
+		</div>
+		<div class="type">
+			<div>资讯媒体</div>
+			<input type="radio" value="1" name="agent">
+		</div>
+		<div class="type">
+			<div>钱包应用</div>
+			<input type="radio" value="1" name="agent">
+		</div>
+		<div class="type">
+			<div>项目应用</div>
+			<input type="radio" value="1" name="agent">
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			名称
+		</div>
+		<div class="list-input">
+			<input type="text" id="title" placeholder="请输入名称" name="">
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			安卓下载地址
+		</div>
+		<div class="list-input">
+			<input type="text" id="android" placeholder="请输入地址" name="">
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			IOS下载地址
+		</div>
+		<div class="list-input">
+			<input type="text" id="ios" placeholder="请输入地址" name="">
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			简介
+		</div>
+		<div class="list-input">
+			<textarea id="content" placeholder="请输入简介"></textarea>
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			官方网站
+		</div>
+		<div class="list-input">
+			<input type="text" id="url" placeholder="请输入地址" name="">
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			联系手机
+		</div>
+		<div class="list-input">
+			<input type="text" id="mobile" placeholder="请输入地址" name="">
+		</div>
+	</div>
+	<div class="list">
+		<div class="list-title">
+			联系微信号
+		</div>
+		<div class="list-input">
+			<input type="text" id="wetch" placeholder="请输入地址" name="">
+		</div>
+	</div>
+	<div class="submit">
+		提交
+	</div>
+	<script type="text/javascript">
+	var imgs;
+		layui.use(['form', 'layedit', 'laydate','upload'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+    var $ = layui.jquery
+  ,upload = layui.upload;
+ var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '__APP__/admin/base/uploadimg'
+    , multiple:true
+    ,number:1
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      // obj.preview(function(index, file, result){
+      //   $('#demo1').attr('src', result); //图片链接（base64）
+      // });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code==0){
+       
+        var img = '<img src="__PUBLIC__/uploads/'+res.url+'" style="width:100px;height:100px;margin:0;">';
+        $('.upload').html(img);
+        imgs=res.url;
+        console.log(img);
+      }
+      if(res.code > 0){
+        return layer.msg(res.msg);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+
+ $('.submit').click(function(){
+  
+  var title = $('#title').val();
+  var scok = $('#scok').val();
+ var ios = $('#ios').val();
+  var url = $('#url').val();
+  var content = $('#content').val();
+  var agent = $("input[name='agent']:checked").val();
+  var android = $('#android').val(); 
+  var mobile = $('#mobile').val();
+  var wetch = $('#mobile').val();
+  
+ 
+ 
+  var id =$('#id').val();
+  var load = layer.load(1);
+  $.ajax({
+    url:'__APP__/index/app/addapp',
+    type:'post',
+    dataType:'json',
+    data:{
+      title:title,
+      logo:imgs,
+      ios:ios,
+      android:android,
+      url:url,
+      content:content,
+      agent:agent,
+      mobile:mobile,
+      wetch:wetch
+     
+    },success:function(res){
+      layer.close(load);
+        if(res.code==0){
+           layer.msg('提交成功');
+        }else{
+          layer.msg('提交失败');
+        }
+    }
+  })
+})
+
+});
+	</script>
+</body>
+</html>

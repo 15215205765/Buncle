@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+<title>添加新地址</title>
+<link href="/shop/css/add_addres.css" type="text/css" rel="stylesheet">
+<script src="/shop/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="/shop/js/pick-pcc.min.1.0.1.js" type="text/javascript"></script>
+<script src="/shop/js/focus.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<script src="__PUBLIC__/layer/layer.js"></script> 
+</head>
+
+<body>
+	<!--收货地址-->
+	<div id="order_box">
+		<h2>添加新地址</h2>
+		<form action="">
+			<input type="text" class="inp_text" id="realname" alt="收货人姓名" placeholder="收货人姓名">
+			<input type="text" class="inp_text" alt="手机号" id="mobile" placeholder="手机号">
+			<a href="javascript:void(0)" class="pick-area pick-area1" name=""></a>
+			<input type="text" class="inp_text" alt="详细地址" id="detail" placeholder="详细地址">
+			<input type="checkbox" name="checkbox" id="cb" checked="">
+			<span class="dizhi">默认地址</span>
+		</form>
+		<a href="#" id="submit" class="sumt_btn">保存</a>
+	</div>
+	
+	
+</body>
+<script>
+	//获取屏幕宽度；
+	windWid();
+	function windWid(){
+		var w=$('body').width();
+		$("html").css({"font-size":(w/10)+'px'});
+	}
+	//监听窗口变化
+	$(window).resize(function(){
+		windWid();
+	});
+	
+	
+	//引入三级联动插件
+	 $(".pick-area1").pickArea();
+	 $(".pick-show i").text('');
+	 $(".pick-list").css('width',"8.6rem");
+     $(".pick-list li").click(function(){
+		$(this).css({'color':'#fff','background':'#0166fe'}).siblings().css({'color':'#333','background':'none'})
+     })
+
+     $('#submit').click(function(){
+     	var realname = $('#realname').val();
+     	var mobile = $("#mobile").val();
+     	var province = $('.pick-province').text();
+     	var city = $('.pick-city').text();
+     	var area = $('.pick-county').text();
+     	var detail = $('#detail').val();
+		var isChecked = $('#cb').is(":checked");
+
+     	if(realname==''){
+     		layer.msg('请输入收货人姓名');
+     		return false;
+     	}
+     	 var pattern = /^1[3456789]\d{9}$/; 
+
+        if(pattern.test(mobile)==false){
+            layer.msg('输入正确的手机号');
+            return false;
+        }
+        if(province=='选择省'){
+     		layer.msg('请选择省');
+     		return false;
+     	}
+     	if(city=='选择市'){
+     		layer.msg('请选择市');
+     		return false;
+     	}
+     	if(area=='选择区'){
+     		layer.msg('请选择区');
+     		return false;
+     	}
+     	if(detail==''){
+     		layer.msg('请输入详细地址');
+     		return false;
+     	}
+     	if(isChecked){
+     		var checked = 1;
+     	}else{
+     		var checked = 0;
+     	}
+     	var load = layer.load(1);
+     	$.ajax({
+     		url:'__APP__/shop/address/addact',
+     		type:'post',
+     		dataType:'json',
+     		data:{
+     			realname:realname,
+     			mobile:mobile,
+     			province:province,
+     			city:city,
+     			area:area,
+     			detail:detail,
+     			checked:checked
+     		},
+     		success:function(res){
+     			layer.close(load);
+     			if(res.code==0){
+     				layer.msg('保存成功',{shift:-1},function(){
+     					window.location.href='__APP__/shop/address';
+     				})
+     			}else{
+     				layer.msg('保存失败，请稍后再试');
+     			}
+     		}
+     	})
+     })
+	
+</script>
+</html>

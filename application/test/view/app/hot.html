@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta name="viewport"content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if !empty($is_hot)}热门应用{elseif !empty($is_recommend) /}最新收录{elseif !empty($agent)}{if($agent==1)}交易所应用{elseif $agent==2 /} 媒体资讯应用{elseif $agent==3 /}钱包应用{elseif $agent==4 /}其他应用{/if}{/if}</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+{notempty name="keyword"}
+<div id="max_sousuo">
+<h1>搜索</h1>
+<form action="__APP__/test/app/hot" method="get">
+<div class="sousuo_input"><input type="search" name="keyword" class="sousuo_input_style" value="{$keyword}" placeholder="输入关键词"></div>
+</form>
+<div class="sousuo_jiange"></div>
+</div>
+{/notempty}
+<!--应用下载列表-->
+<div id="list_style">
+  <ul>
+{volist name="list" id="item"}
+    <li>
+      <div class="app_icon"><img src="__PUBLIC__/uploads/{$item['logo']}"></div>
+      <div class="app_content">
+        <div class="app_txt"> <b>{$item['title']}</b> <span>{$item['short_title']}</span> </div>
+        <div class="app_download" onclick="window.location.href='__APP__/test/app/detail?id={$item['id']}'">下载</div>
+      </div>
+    </li>
+    {/volist}
+  </ul>
+</div>
+</body>
+</html>

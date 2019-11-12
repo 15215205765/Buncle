@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>邀请有礼</title>
+	<meta http-equiv="content-type" content="textml;charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/user/share.css">
+	<script type="text/javascript" src='https://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script> 
+	  <script>
+     wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: '{$signPackage["appId"]}',  
+                timestamp: '{$signPackage["timestamp"]}',  
+                nonceStr: '{$signPackage["nonceStr"]}',  
+                signature: '{$signPackage["signature"]}',   
+                jsApiList: [
+                    'checkJsApi',  
+                    'onMenuShareTimeline',  
+                    'onMenuShareAppMessage',  
+                    'onMenuShareQQ',  
+                    'onMenuShareWeibo',  
+                    'onMenuShareQZone'  ] // 必填，需要使用的JS接口列表 这里填写需要用到的微信api openlocation为使用微信内置地图查看位置接口
+            });
+              wx.ready(function () {  
+             //分享到朋友圈  
+             
+             wx.onMenuShareTimeline({  
+                 title: '区块链App都在这里……', // 分享标题  
+                 link:"http://bingbing.pro/chsq/app/index.php?i=4&c=entry&do=chshareqrcode&m=we7_coupon&openid={$member['openid']}", 
+                 imgUrl: "http://wx.buncle.co/public/static/images/share-logo.jpg", // 分享图标  
+                 success: function () {  
+            // 分享成功执行此回调函数  
+                   
+                 },  
+                 cancel: function () {  
+                   
+                 }  
+             });  
+  
+             //分享给朋友  
+             wx.onMenuShareAppMessage({  
+                 title:  '区块链App都在这里……', // 分享标题  
+                 desc:  "下载应用，就上BUNCLE！",  
+                 link: "http://bingbing.pro/chsq/app/index.php?i=4&c=entry&do=chshareqrcode&m=we7_coupon&openid={$member['openid']}", 
+                 imgUrl: "http://wx.buncle.co/public/static/images/share-logo.jpg", // 分享图标  
+                 trigger: function (res) {  
+                     // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回  
+                 },  
+                 success: function (res) {  
+             // 分享成功执行此回调函数  
+                    
+                 },  
+                 cancel: function (res) {  
+                     
+                 },  
+                 fail: function (res) {  
+                     alert(JSON.stringify(res));  
+                 }  
+             });  
+         }); 
+
+    
+</script>
+
+<script src="__PUBLIC__/jquery.min.js"></script>
+<style type="text/css">
+	.share{
+		position: fixed;
+		top: 0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		display: none;
+		z-index: 999;
+	}
+	.share img{
+		width: 100%;
+		height: 100%;
+	}
+</style>
+</head>
+<body>
+<div class="logo">
+	<img src="__PUBLIC__/static/images/logo.png">
+</div>
+<div class="top">
+	<div class="top-title">
+		邀请有礼
+	</div>
+	<div class="top-center">
+		邀请好友关注领取更多UNCLE
+	</div>
+	<div class="top-bottom">
+		<div class="lj-share">
+			链接分享
+		</div>
+		<div class="hb-share" onclick="window.location.href='http://bingbing.pro/chsq/app/index.php?i=4&c=entry&do=chshareqrcode&m=we7_coupon&openid={$member['openid']}'">
+			海报分享
+		</div>
+	</div>
+</div>
+<div class="top">
+	<div class="top-title">
+		邀请记录
+	</div>
+	<div class="record">
+		<div class="list">
+			<div class="m">
+				M1
+			</div>
+			<div class="n">
+				{$data['M1']}
+			</div>
+		</div>
+		<div class="list">
+			<div class="m">
+				M2
+			</div>
+			<div class="n">
+				{$data['M2']}
+			</div>
+		</div>
+		<div class="list">
+			<div class="m">
+				M3
+			</div>
+			<div class="n">
+				{$data['M3']}
+			</div>
+		</div>
+		<div class="list">
+			<div class="m">
+				M4
+			</div>
+			<div class="n">
+				{$data['M4']}
+			</div>
+		</div>
+		<div class="list">
+			<div class="m">
+				M5
+			</div>
+			<div class="n">
+				{$data['M5']}
+			</div>
+		</div>
+		<div class="list">
+			<div class="m">
+				M6
+			</div>
+			<div class="n">
+				{$data['M6']}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="top">
+	<div class="top-title">
+		邀请规则
+	</div>
+	<div class="rule">
+		<div class="rule-left">
+			◎
+		</div>
+		<div class="rule-right">
+			关注BUNCLE即送777UNCLE，邀请M1送
+100UNCLE，邀请M2送50UNCLE，邀请M3送30UNCLE，邀请M4送20UNCLE，邀请M5送10UNCLE，邀请M6送5UNCLE。
+		</div>
+	</div>
+	<div class="rule">
+		<div class="rule-left">
+			◎
+		</div>
+		<div class="rule-right">
+			BUNCLE拥有对本次活动的最终解释权，有权取消通过不正当手段获取的奖励，唯有真实分享邀请关注，才可领取UNCLE。
+		</div>
+	</div>
+</div>
+<div class="share">
+	<img src="__PUBLIC__/static/images/share-bg.jpg">
+</div>
+</body>
+<script type="text/javascript">
+	$('.lj-share').click(function(){
+		$('.share').show();
+	})
+	$('.share').click(function(){
+		$('.share').hide();
+	})
+</script>
+</html>

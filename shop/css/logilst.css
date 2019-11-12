@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{padding: 0;margin: 0;list-style: none;text-decoration: none;}
+body{width: 100%; color: #333;font-family:"Adobe 黑体 Std R";overflow-x: hidden;}
+/*===产品展示样式=====*/
+#logist_img{width: 100%;height: 3.6rem;background: #fff;font-size: 0.4rem;}
+#logist_img i{display: block;width: 2.2rem;height: 2.2rem;margin:0.7rem 0 0 0.7rem;  background: url(../img/loglist/prod_img_01.png) center no-repeat;background-size: 100% auto;float: left;}
+#logist_img p{display: block;width: 5.6rem;height: auto;white-space: nowrap;overflow: hidden; float: left;color: #000;margin: 0.8rem 0 0 0.6rem;text-overflow:ellipsis;}
+#logist_img span{display: block;width: 4.4rem;height: auto;float: left;font-size: 0.28rem;background: url(../img/loglist/ico_01.png) right no-repeat;background-size: 0.26rem auto;margin: 0.4rem 0 0 0.6rem}
+/*===物流信息=====*/
+#logist_txt{width: 10rem;font-size: 0.4rem;margin:0.4rem 0 0 0.6rem;}
+#logist_txt ul{width: 8.3rem;height: auto;margin:0.34rem 0 0 0.6rem;font-size: 0.32rem; margin-right: 0.7rem; float: right;color: #b0b0b0;}
+#logist_txt ul li{height:1.2rem;width: 100%; }
+#logist_txt ol{width: 0.32rem;height: 10rem; float: left;margin-top: 0.4rem;}
+#logist_txt ol li{width: 0.32rem;height: 1.2rem;}
+#logist_txt ol li i{display: block;width: 0.32rem;height: 0.32rem;border-radius: 0.16rem;background: #b0b0b0;}
+#logist_txt ol li span{display: block;width: 0.02rem;height: 0.88rem;background: #b0b0b0;margin-left: 0.15rem;}
+
+
+
+
+
+

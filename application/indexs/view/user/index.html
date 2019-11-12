@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BUNCLE区块链应用市场</title>
+	<meta http-equiv="content-type" content="textml;charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/user/index.css?v=<?php echo time();?>">
+	<script type="text/javascript" src='https://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script> 
+	  <script>
+     wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: '{$signPackage["appId"]}',  
+                timestamp: '{$signPackage["timestamp"]}',  
+                nonceStr: '{$signPackage["nonceStr"]}',  
+                signature: '{$signPackage["signature"]}',   
+                jsApiList: [
+                    'checkJsApi',  
+                    'onMenuShareTimeline',  
+                    'onMenuShareAppMessage',  
+                    'onMenuShareQQ',  
+                    'onMenuShareWeibo',  
+                    'onMenuShareQZone',
+                    'hideMenuItems'  ] // 必填，需要使用的JS接口列表 这里填写需要用到的微信api openlocation为使用微信内置地图查看位置接口
+            });
+              wx.ready(function () {  
+             
+             
+             wx.hideMenuItems({
+				menuList: [ 
+					'menuItem:share:appMessage',  
+                    'menuItem:share:timeline',  
+                    'menuItem:share:qq',  
+                    'menuItem:share:weiboApp',  
+                    'menuItem:favorite',
+                    'menuItem:share:QZone',
+                    'menuItem:copyUrl',
+                    'menuItem:openWithQQBrowser',
+                    'menuItem:openWithSafari'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+				});
+         })
+
+
+    
+</script>
+</head>
+<body>
+<div class="header">
+	<div class="header-top">
+		<div class="avatar">
+			<img src="{$user['avatar']}">
+		</div>
+		<div class="nickname">
+			{$user['nickname']}
+		</div>
+		<div class="sign" onclick="window.location.href='__APP__/index/user/sign'">
+			每日签到
+		</div>
+	</div>
+	<div class="header-bottom">
+		{$user['buncle']}&nbsp;UNCLE
+	</div>
+	<div class="detail" onclick="window.location.href='__APP__/index/user/record'">
+		查看详情
+	</div>
+</div>
+<div class="task">
+	<div class="task-meun" onclick="window.location.href='__APP__/index/user/share'">
+		<div>
+			邀请有礼
+		</div>
+		<img src="__PUBLIC__/static/images/yaoqingyouli.png">
+	</div>
+	<div class="task-meun" onclick="window.location.href='__APP__/index/user/task'">
+		<div>
+			任务中心
+		</div>
+		<img src="__PUBLIC__/static/images/renwuzhongxin.png">
+	</div>
+</div>
+<div class="banner">
+	<img src="__PUBLIC__/static/images/user-banner.png">
+</div>
+<div class="adv" style="margin-bottom:100px;">
+	<div class="adv-head">
+		BUNCLE商城
+	</div>
+	<div class="adv-img">
+		<img src="__PUBLIC__/static/images/user-adv.png">
+	</div>
+</div>
+
+{include file="public/footer" /}
+</body>
+</html>

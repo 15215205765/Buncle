@@ -1,0 +1,31 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公告详情</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css" />
+{include file="public/unshare" /}
+</head>
+
+<body>
+	<!-- <div id="xiangqing_top">
+		<div class="xq_back"><a href="../index.html"><img  src="../image/back_icon2.png"></a></div><b>公告</b>
+	</div> -->
+	<div class="xiangqing_daohang">BUNCLE > <span onclick="window.location.href='__APP__/test/gonggao'" style="color:#0166fe;">公告中心</span> > 最新公告</div>
+	<div id="gonggao_neirong">
+		<div class="gonggao_title">{$data['title']}</div>
+<div class="user_bufen">
+	<img src="__PUBLIC__/uploads/{$data['logo']}">
+    <div class="user_text">
+    <ul>
+    <li><b>{$data['author']}</b></li>
+    <li><span>{$data['createtime']|date="Y-m-d H:i",###}发布</span></li>
+    </ul>
+    </div>
+    </div>
+    <div class="gonggao_allneirong">
+    	{$data['content']}
+    </div>
+	</div>
+</body>
+</html>

@@ -155,7 +155,9 @@ return [
     'exception_tmpl'         => THINK_PATH . 'tpl' . DS . 'think_exception.tpl',
 
     // 错误显示信息,非调试模式有效
-    'error_message'          => '页面错误！请稍后再试～',
+    'error_message'          => '系统升级，敬请期待。/r/n
+
+BUNCLE，全球最大的区块链应用商店，收录全部的区块链应用，为大众提供优质的区块链应用下载服务。',
     // 显示错误信息
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
@@ -240,7 +242,7 @@ return [
         'list_rows' => 15,
     ],
      'view_replace_str'       => [
-        '__PUBLIC__'=> '/buncle/public',          
-        '__APP__'   => '/buncle/index.php',              
+        '__PUBLIC__'=> '/public',          
+        '__APP__'   => '/index.php',              
     ],
 ];

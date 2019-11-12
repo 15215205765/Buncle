@@ -1,0 +1,76 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+*{padding: 0;margin: 0;list-style: none;text-decoration: none;}
+body{width: 100%; color: #333;font-family:"微软雅黑";overflow-x: hidden;background:#f4f4f4 url(../img/activity/bg_img.png)  center -1rem no-repeat;background-size: 100% auto;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust: none !important;}
+/*===产品展示样式=====*/
+
+#sign_box{width: 8.6rem;height: auto;margin: 2.1rem auto 0 auto;border-radius: 0.4rem;overflow: hidden; }
+#sign_box i{ display: block;width: 8.6rem;height: 2rem;background: url(../img/activity/bg_title.png) center 0rem no-repeat;background-size: 100% auto;}
+#sign_box .sign{width: 8.6rem;height: 16rem;background: #fff;background:#fff url(../img/activity/img_caidai.png) center 1.6rem no-repeat;background-size: 5.2rem auto;}
+#sign_box .sign .sign_btn{width: 4rem;height: 4rem;border-radius: 2.5rem;position: relative;top: 1.4rem; margin:0 auto;}
+#sign_box .sign .sign_btn b{display:block;position: absolute;top:1rem;left: 1rem; font-weight: inherit;width: 2rem;height: 2rem;background: #0166fe;border-radius: 2rem;font-size: 0.48rem;}
+#sign_box .sign .sign_btn b span{display: block;color: #fff;line-height: 0.54rem;position: absolute;top: 0.46rem;left: 0.5rem}
+#sign_box .sign .sign_days{width: 7.6rem;height: 1.9rem;margin: 2rem auto 0.7rem auto;font-size: 0.4rem;line-height: 1.9rem;color: #0166fe;}
+#sign_box .sign .sign_days span{float: left;display: inherit;margin:0  0.3rem}
+#sign_box .sign .sign_days ul{margin: 0 0.4rem}
+#sign_box .sign .sign_days ul li{position: relative; float: left;width:1rem;height: 1.9rem;background: url(../img/activity/bg_box.png) center no-repeat;background-size: 1.2rem auto;text-align: center;line-height: 1.9rem;font-size: 0.6rem; }
+#sign_box .sign a{display: block;width: 4.1rem;height: 0.5rem;margin: 0 auto;background: url(../img/personal/iconic_01.png) center right no-repeat; background-size: auto 0.36rem;font-size: 0.4rem;color: #0166fe; line-height: 0.5rem}
+#sign_box .sign .rules{font-size: 0.4rem;color: #b0b0b0;text-align: center;margin-top: 0.4rem;}
+#sign_box .sign .rules span{margin: 0.6rem; color:#0166fe;line-height: 2rem; }
+#sign_box .sign .txt{text-align: center;font-size: 0.4rem;color: #b0b0b0;margin-top: 2rem;}
+
+
+#box{
+	width: 4rem;
+	height: 4rem;
+	position: relative;
+	border-radius: 50%;
+}
+#box i{
+	display: block;
+	width: 4rem;
+	height: 4rem;
+	position:absolute;
+	left: 0px;
+	top: 0px;
+	background: #0166fe;
+	border-radius: 50%;
+	opacity: 0;
+}
+#box i:nth-child(1){
+	-webkit-animation: box 3s linear 0s infinite;
+	animation: box 3s linear 0s infinite;
+}
+#box i:nth-child(2){
+	-webkit-animation: box 3s linear 0.4s infinite;
+	animation: box 3s linear 0.4s infinite;
+	
+}
+#box i:nth-child(3){
+	-webkit-animation: box 3s linear 0.8s infinite;
+	animation: box 3s linear 0.8s infinite;
+}
+@keyframes box{
+	0%{
+		transform: scale(0);
+		opacity: 0;
+	}
+	25%{
+		opacity: 0.4;
+	}
+	100%{
+		transform: scale(1);
+		opacity: 0;
+	}
+}
+
+/*===提示=====*/
+.tishi_box{width: 100%;height: 100%;position: fixed;top:0;left: 0; background:rgba(0,0,0,0.51);display: none}
+.tishi_box .box_bg{width:6.6rem;height: 10rem;position: fixed;top: 50%; left: 50%; margin-left: -3.3rem;margin-top: -5rem; background: url(../img/personal/img_tishi.png) top no-repeat;background-size: 100% auto;font-size: 0.32rem;color: #fff;line-height: 0.6rem;}
+.tishi_box .box_bg p{position: absolute;left: 0.8rem;top: 6rem;font-family: "微软雅黑";}
+.tishi_box .box_bg i{position: absolute;left:2.8rem;bottom: 0rem;display: block;width: 0.8rem;height: 0.8rem;background: url(../img/personal/ico_down.png) center no-repeat;background-size: 100% auto;}
+
+
+
+

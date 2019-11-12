@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta name="viewport"content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Bunde2.0</title>
+<link href="../style/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="all_bg">
+<div id="APP_list_top" style=" border:0;">
+ <div class="list_top_back"><a href="gerenzhongxin.html"><img src="../image/back_icon.png"></a></div>
+  <b style=" color:#FFF">签到</b>
+</div>
+<div class="title_bg">每天签到赢UNCLE</div>
+<div class="qiandao">
+<div class="qd_buton_bg">
+<div class="qd_buton_img"><img id="qiandao_button" src="../image/qiandao_button.png"></div>
+<div class="qiandao_jisu">已连续签到<b>9</b>天 ；已签到<b>29</b>天</div>
+<div class="qiandao_guize">
+<p>签到规则</p>
+<ul>
+<li><img src="../image/quan.png"><span>用户每天签到一次，领取1UNCLE；</span></li>
+<li><img src="../image/quan.png"><span>连续签到可以领取更多UNCLE；</span></li>
+</ul>
+</div>
+<div class="qiandao_senmin">BUNCLE拥有签到活动的最终解释权。</div>
+</div>
+</div>
+</div>
+<div class="douzaiqiandao">
+<b>他们都在签到</b>
+<ul>
+<li><a>Joio</a>签到时间12:43  获得<sapn>10</sapn>UNCLE<</li>
+<li><a>Joio</a>签到时间12:43  获得<sapn>10</sapn>UNCLE<</li>
+<li><a>Joio</a>签到时间12:43  获得<sapn>10</sapn>UNCLE<</li>
+</ul>
+</div>
+<!--签到成功-->
+<div id="qiandao_ok"><a class="button_style">好的</a></div>
+<div class="zezao"></div>
+</body>
+<script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#qiandao_button").click( function(){
+		$(".zezao").css("display","block");
+		$("#qiandao_ok").css("display","block");
+		
+		})
+		$(".button_style").click(function(){
+			
+					$(".zezao").css("display","none");
+		$("#qiandao_ok").css("display","none");
+			
+			})
+	})
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta name="viewport"content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公告</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css" />
+{include file="public/unshare" /}
+</head>
+
+<body>
+	<!-- <div id="xiangqing_top">
+		<div class="xq_back"><a href="../index.html"><img  src="__PUBLIC__/static/images/2/back_icon2.png"></a></div><b>公告</b>
+	</div> -->
+	<div class="xiangqing_daohang">BUNCLE > 公告中心 </div>
+    <div class="fu_title">
+    <h2>公告中心</h2>
+    <h3>最新公告</h3>
+    </div>
+	<div class="gonggao_zx_list">
+		<ul>
+		{volist name="list" id="item"}
+		<li onclick="window.location.href='__APP__/test/gonggao/detail?id={$item['id']}'"><b>{$item['title']}</b></li>	
+		{/volist}
+        </ul>
+	</div>
+	{include file="public/footer" /}
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+<title>我的订单</title>
+<link href="/shop/css/order_all.css" type="text/css" rel="stylesheet">
+<script src="/shop/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<!--<script src="js/market.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+	<!--订单导航-->
+	<div id="order_box">
+		<h2>我的订单</h2>
+		<ul>
+			<li style="margin-left: 0;"><a style="color: #0166fe" href="__APP__/shop/order/all">全部</a><i style="width: 0.8rem"></i></li>
+			<li><a href="__APP__/shop/order/daifahuo">待发货</a></li>
+			<li><a href="order_Been.html">已收货</a></li>
+			<li><a href="order_Exchange.html">已兑换</a></li>
+			<li><a href="__APP__/shop/order/xuni">已购买</a></li>
+		</ul>
+	</div>
+	<!--订单商品-->
+	{volist name='shiwuorder' id="item"}
+	<div class="goods">
+		<i style="background: url(/public/uploads/{$item['goods']['thumb']}) center no-repeat;background-size: 100% auto;"></i>
+		<p>{$item['goods']['title']}</p>
+		<b>共{$item['number']}件商品  合计：<span>&yen;{$item['money']}</span></b>
+		<a href="###" class="con_btn">确认收货</a>
+		<a href="logistics.html" class="log_btn">查看物流</a>
+	</div>
+	{/volist}
+	
+</body>
+<script>
+	//获取屏幕宽度；
+	windWid();
+	function windWid(){
+		var w=$('body').width();
+		$("html").css({"font-size":(w/10)+'px'});
+	}
+	//监听窗口变化
+	$(window).resize(function(){
+		windWid();
+	});
+	
+</script>
+</html>

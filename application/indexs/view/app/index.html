@@ -1,0 +1,344 @@
+{include file="public/appheader" /}
+  <link rel="stylesheet" href="__PUBLIC__/static/swiper/css/swiper.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/static/css/index/app/index.css?v=<?php echo time();?>">
+  <script src="__PUBLIC__/jquery.min.js"></script>
+  <script type="text/javascript" src='https://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script> 
+    <script>
+     wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: '{$signPackage["appId"]}',  
+                timestamp: '{$signPackage["timestamp"]}',  
+                nonceStr: '{$signPackage["nonceStr"]}',  
+                signature: '{$signPackage["signature"]}',   
+                jsApiList: [
+                    'checkJsApi',  
+                    'onMenuShareTimeline',  
+                    'onMenuShareAppMessage',  
+                    'onMenuShareQQ',  
+                    'onMenuShareWeibo',  
+                    'onMenuShareQZone',
+                    'hideMenuItems'  ] // 必填，需要使用的JS接口列表 这里填写需要用到的微信api openlocation为使用微信内置地图查看位置接口
+            });
+              wx.ready(function () {  
+             
+             
+             wx.hideMenuItems({
+        menuList: [ 
+          'menuItem:share:appMessage',  
+                    'menuItem:share:timeline',  
+                    'menuItem:share:qq',  
+                    'menuItem:share:weiboApp',  
+                    'menuItem:favorite',
+                    'menuItem:share:QZone',
+                    'menuItem:copyUrl',
+                    'menuItem:openWithQQBrowser',
+                    'menuItem:openWithSafari'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        });
+         })
+
+
+    
+</script>
+  <style type="text/css">
+    .swiper-container-3d .swiper-slide-shadow-right{
+      background-image:none;
+    }
+    .swiper-container-3d .swiper-slide-shadow-left{
+      background-image:none;
+    }
+    .shoulu{
+      width: 80%;
+      padding: 0 10%;
+    }
+    .shoulu-title{
+      width: 100%;
+      line-height: 40px;
+      text-align: center;
+      color: #801DAE;
+      font-size: 18px;
+    }
+    .shoulu-main{
+      width: 100%;
+    }
+    .shoulu-list{
+      width: 50%;
+      height: 50px;
+      line-height: 50px;
+      float: left;
+      text-align: center;
+      color: #801DAE;
+    }
+    .shoulu-list img{
+      width: 30px;
+      float: left;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    .shoulu-list div{
+      float: left;
+    }
+  .zuixin-main{
+    width: 90%;
+    padding: 0 5%;
+  }
+  .zuixin-list{
+    width: 100%;
+    height: 100px;
+    display: inline-block;
+    border-bottom: 1px solid rgba(240,240,240,1);
+  }
+  .list-left{
+    float: left;
+    width: 100px;
+    text-align: center;
+  }
+  .list-left img{
+    width: 60px;
+    height: 60px;
+    margin-top: 20px;
+  }
+  .list-right{
+    float: left;
+    width: 60%;
+    display: inline-block;
+    padding: 30px 0;
+
+  }
+  .zuixin-list-title{
+    font-size: 18px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
+  .content{
+    font-size: 14px;
+    overflow: hidden;
+    width: 40%;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
+  .download{
+    float: left;
+    background: #801DAE;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    border-radius: 20px;
+    margin-top: 30px;
+    width: 60px;
+    text-align: center;
+  }
+  </style>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+     {volist name="banner" id="item"}
+        <div class="swiper-slide" onclick="window.location.href='{$item['url']}'"><img src="__PUBLIC__/uploads/{$item['img']}" class="banner" style="border-radius:10px;"></div>
+        {/volist}
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+   
+</div>
+
+<div class="swiper-container1" style="width:100%;overflow:hidden;">
+    <div class="swiper-wrapper">
+    {volist name="hot" id="item"}
+        <div class="swiper-slide" onclick="window.location.href='__APP__/index/app/detail?id={$item['aid']}'"><img src="__PUBLIC__/uploads/{$item['img']}" class="banner1"></div>
+        {/volist}
+       
+    </div>
+</div>
+{if ($agent==100)}
+  <div class="shoulu">
+      <div class="shoulu-title">
+          当前收录数据详情
+      </div>
+      <div class="shoulu-main">
+        <div class="shoulu-list">
+            <img src="__PUBLIC__/static/images/jiaoyisuo.png">
+            <div>交易所{$list['count1']}家</div>
+        </div>
+         <div class="shoulu-list">
+            <img src="__PUBLIC__/static/images/qianbao.png">
+            <div>钱包{$list['count3']}家</div>
+        </div>
+         <div class="shoulu-list">
+            <img src="__PUBLIC__/static/images/meiti.png">
+            <div>媒体{$list['count2']}家</div>
+        </div>
+         <div class="shoulu-list">
+            <img src="__PUBLIC__/static/images/xiangmu.png">
+            <div>项目{$list['count4']}家</div>
+        </div>
+      </div>
+  </div>
+  <div class="title" onclick="window.location.href='__APP__/index/app/hot?agent={$agent}&is_recommend=1'">
+    <div class="title-text">
+        最新收录
+    </div>
+    <div class="title-img">
+      <img src="__PUBLIC__/static/images/right.png">
+    </div>
+  </div>
+  <div class="zuixin-main">
+  {volist name="list['list1']" id="item"}
+    <div class="zuixin-list">
+      <div class="list-left">
+        <img src="/public/uploads/{$item['logo']}">
+      </div>
+      <div class="list-right">
+        <div class="zuixin-list-title">
+          {$item['title']}
+        </div>
+        <div class="content">
+          {$item['content']}
+        </div>
+      </div>
+      <div class="download" onclick="window.location.href='__APP__/index/app/detail?id={$item['id']}'">
+        下载
+      </div>
+    </div>
+    {/volist}
+  </div>
+    <div class="title" onclick="window.location.href='__APP__/index/app/hot?agent={$agent}&is_hot=1'">
+    <div class="title-text">
+        热门应用
+    </div>
+    <div class="title-img">
+      <img src="__PUBLIC__/static/images/right.png">
+    </div>
+  </div>
+  <div class="zuixin-main" style="margin-bottom: 70px;">
+  {volist name="list['list2']" id="item"}
+    <div class="zuixin-list">
+      <div class="list-left">
+        <img src="/public/uploads/{$item['logo']}">
+      </div>
+      <div class="list-right">
+        <div class="zuixin-list-title">
+          {$item['title']}
+        </div>
+        <div class="content">
+          {$item['content']}
+        </div>
+      </div>
+      <div class="download" onclick="window.location.href='__APP__/index/app/detail?id={$item['id']}'">
+        下载
+      </div>
+    </div>
+    {/volist}
+  </div>
+{else/}
+<div class="title" onclick="window.location.href='__APP__/index/app/hot?agent={$agent}'">
+  <div class="title-text">
+     {switch name="agent"}
+                                        {case value="1"}
+                                           更多交易所应用
+                                        {/case}
+                                        {case value="2"}
+                                          更多资讯媒体应用
+                                        {/case}
+                                        {case value="3"}
+                                          更多钱包应用
+                                        {/case}
+                                        {default /}
+                                            更多区块链项目应用
+                                    {/switch}
+  </div>
+  <div class="title-img">
+    <img src="__PUBLIC__/static/images/right.png">
+  </div>
+</div>
+<div class="main">
+  {volist name='list' id="item"}
+  <div class="list" onclick="window.location.href='__APP__/index/app/detail?id={$item['id']}?agent={$agent}'">
+    <div class="list-logo">
+      <img src="__PUBLIC__/uploads/{$item['logo']}" class="logo">
+    </div>
+    <div class="list-title">
+      {$item['title']}
+    </div>
+  </div>
+  {/volist}
+  {notempty name="recommend"}
+  <div class="tuijian" onclick="window.location.href='__APP__/index/app/detail?id={$recommend['aid']}'" style="border-top:1px solid #eee;border-bottom:1px solid #eee;">
+    <!-- <div class="tuijian-title">
+      {$recommend['title']}
+    </div> -->
+    <div class="tuijian-img">
+      <img src="__PUBLIC__/uploads/{$recommend['img']}">
+    </div>
+    <div class="tuijian-app" style="display:inline-block;">
+      <div class="app-left">
+        <img src="__PUBLIC__/uploads/{$recommend['logo']}">
+      </div>
+      <div class="app-right">
+        <div class="app-title">
+            {$recommend['apptitle']}
+          </div>
+          <div class="app-content">
+            {$recommend['content']}
+          </div>
+      </div>
+      <div class="download" onclick="window.location.href='__APP__/index/app/detail?id={$recommend['aid']}'">
+        下载
+      </div>
+    </div>
+  </div>
+  {/notempty}
+</div>
+{/if}
+{include file="public/footer" /}
+</body>
+<script src="__PUBLIC__/static/swiper/js/swiper.min.js"></script>
+<script>   
+
+$(function(){
+    var zongkuan = $('.tuijian-app').width();
+    var jianqu = $('.app-left').width();
+    
+     $('.app-right').css('width',zongkuan-jianqu-61+'px');
+      $('.app-content').css('width',zongkuan-jianqu-61+'px');
+  })     
+  var mySwiper = new Swiper ('.swiper-container', {
+    loop: true, // 循环模式选项
+     autoplay:true,
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+
+    },
+  })  
+
+  var mySwiper2 = new Swiper('.swiper-container1', {
+  autoplay:2000,//自动滑动
+  speed:500,//自动滑动开始到结束的时间（单位ms）
+  loop:true,//开启循环
+  loopedSlides:5,//在loop模式下使用slidesPerview:'auto',还需使用该参数设置所要用到的loop个数。
+  slidesPerView:'2',//设置slider容器能够同时显示的slides数量(carousel模式)。另外，支持'auto'值，会根据容器container的宽度调整slides数目。
+  effect:'coverflow',//可以实现3D效果的轮播,
+  pagination:'.swiper-pagination',//分页器
+  centeredSlides:true,//设定为true时，active slide会居中，而不是默认状态下的居左。
+  coverflow:{
+    rotate:0,//slide做3d旋转时Y轴的旋转角度。默认50。
+    stretch:100,//每个slide之间的拉伸值，越大slide靠得越紧。 默认0。
+    depth:500,//slide的位置深度。值越大z轴距离越远，看起来越小。 默认100。
+    modifier:1,//depth和rotate和stretch的倍率，相当于depth*modifier、rotate*modifier、stretch*modifier，值越大这三个参数的效果越明显。默认1。
+    slideShadows:true,//开启slide阴影。默认 true。
+  },
+});   
+  $('.logo').each(function(){
+    var width = $(this).width();
+    $(this).css('height',width+'px');
+  })
+  $('.list-right').each(function(){
+    var zongkuan = $('.zuixin-list').width();
+    var jianqu = $('.list-left').width();
+    // console.log(zongkuan,jianqu);
+     $(this).css('width',zongkuan-jianqu-61+'px');
+      $('.content').css('width',zongkuan-jianqu-61+'px');
+  })
+  </script>
+</html>

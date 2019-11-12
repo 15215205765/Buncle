@@ -23,20 +23,21 @@
                                 </div>
                             </div>
                             
-
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">描述：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" id="short_title" lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['short_title']}">
+                                </div>
+                            </div>
                           
-                            
-                            
-                             
-                            
                            
                             <div class="layui-form-item">
                                 <label class="layui-form-label">APPlogo：</label>
                                 <div class="layui-upload">
                                     <button type="button" class="layui-btn" id="test1" style="background-color:#ddd;color:#333">选择图片</button>
-                                    <div class="layui-upload-list" style="margin: 10px 105px;"> 
+                                    <div class="layui-upload-list" id="demo1" style="margin: 10px 105px;"> 
                                    
-                                    <img class="layui-upload-img" id="demo1" src="__PUBLIC__/uploads/{$data['logo']}" style="width:80px;height:50px">
+                                    <img class="layui-upload-img"  src="__PUBLIC__/uploads/{$data['logo']}" style="width:80px;height:50px">
                                   
                                     <!-- <p style="color:#999;font-size:12px">*建议图片宽高80*50</p> -->
                                         <p id="demoText"></p>
@@ -44,6 +45,19 @@
                                 </div>
                             </div>
                             
+                             <div class="layui-form-item">
+                                <label class="layui-form-label">BANNER：</label>
+                                <div class="layui-upload">
+                                    <button type="button" class="layui-btn" id="test2" style="background-color:#ddd;color:#333">选择图片</button>
+                                    <div class="layui-upload-list" id="demo2" style="margin: 10px 105px;"> 
+                                   
+                                    <img class="layui-upload-img"  src="__PUBLIC__/uploads/{$data['thumb']}" style="width:80px;height:50px">
+                                  
+                                    <!-- <p style="color:#999;font-size:12px">*建议图片宽高80*50</p> -->
+                                        <p id="demoText"></p>
+                                    </div>
+                                </div>
+                            </div>
                              <div class="layui-form-item">
                                 <label class="layui-form-label">IOS下载地址：</label>
                                 <div class="layui-input-inline">
@@ -75,6 +89,7 @@
                                       <option value="1" >交易所</option>
                                       <option value="2">资讯媒体</option>
                                       <option value="3">钱包应用</option>
+                                      <option value="4">项目应用</option>
                                   </select>
                                 </div>
                             </div>
@@ -84,6 +99,56 @@
                                     <input type="text" name="title" id="scok" lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['sock']}">
                                 </div>
                             </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">是否显示</label>
+                                <div class="layui-input-block">
+                                  <input type="radio" name="is_show" value="1" title="是" <?php if($data['is_show']==1){echo 'checked';}?>>
+                                  <input type="radio" name="is_show" value="0" title="否" <?php if($data['is_show']==0){echo 'checked';}?>>
+                                </div>
+                              </div>
+                              <div class="layui-form-item">
+                                <label class="layui-form-label">是否热门</label>
+                                <div class="layui-input-block">
+                                  <input type="radio" name="is_hot" value="1" title="是" <?php if($data['is_hot']==1){echo 'checked';}?>>
+                                  <input type="radio" name="is_hot" value="0" title="否" <?php if($data['is_hot']==0){echo 'checked';}?>>
+                                </div>
+                              </div>
+                               <div class="layui-form-item">
+                                <label class="layui-form-label">是否最新</label>
+                                <div class="layui-input-block">
+                                  <input type="radio" name="is_recommend" value="1" title="是" <?php if($data['is_recommend']==1){echo 'checked';}?>>
+                                  <input type="radio" name="is_recommend" value="0" title="否" <?php if($data['is_recommend']==0){echo 'checked';}?>>
+                                </div>
+                              </div>
+                              {notempty name="data['wetch']"}
+                                 <div class="layui-form-item">
+                                    <label class="layui-form-label">微信：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="title"  lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['wetch']}">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">是否赞助</label>
+                                  <div class="layui-input-block">
+                                    <input type="radio"  value="1" title="是" <?php if($data['zanzhu']==1){echo 'checked';}?>>
+                                    <input type="radio"  value="0" title="否" <?php if($data['zanzhu']==0){echo 'checked';}?>>
+                                  </div>
+                                </div>
+                                {if $data['zanzhu']==1}
+                                  <div class="layui-form-item">
+                                    <label class="layui-form-label">赞助类容：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="title"  lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['zanzhu_con']}">
+                                    </div>
+                                  </div>
+                                   <div class="layui-form-item">
+                                    <label class="layui-form-label">赞助数量：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="title"  lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['zanzhu_num']}">
+                                    </div>
+                                  </div>
+                                {/if}
+                              {/notempty}
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
                                     <div class="layui-btn site-demo-layedit btn-chouj-choose" id="submit">提交</div>
@@ -130,6 +195,7 @@
 </style>
 <script type="text/javascript">
 var imgs='{$data['logo']}';
+var thumb='{$data['thumb']}';
 
 layui.use(['form', 'layedit', 'laydate','upload'], function(){
   var form = layui.form
@@ -154,8 +220,42 @@ layui.use(['form', 'layedit', 'laydate','upload'], function(){
       if(res.code==0){
        
         var img = '<img src="__PUBLIC__/uploads/'+res.url+'" style="width:80px;height:50px">';
-        $('.layui-upload-list').html(img);
+        $('#demo1').html(img);
         imgs=res.url;
+        console.log(img);
+      }
+      if(res.code > 0){
+        return layer.msg(res.msg);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  var uploadIns = upload.render({
+    elem: '#test2'
+    ,url: '__APP__/admin/base/uploadimg'
+    , multiple:true
+    ,number:1
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      // obj.preview(function(index, file, result){
+      //   $('#demo1').attr('src', result); //图片链接（base64）
+      // });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code==0){
+       
+        var img = '<img src="__PUBLIC__/uploads/'+res.url+'" style="width:80px;height:50px">';
+        $('#demo2').html(img);
+        thumb=res.url;
         console.log(img);
       }
       if(res.code > 0){
@@ -183,10 +283,10 @@ layui.use(['form', 'layedit', 'laydate','upload'], function(){
   var id = $('#id').val();
   var agent = $('#agent').val();
   var android = $('#android').val(); 
-  
-  
- 
- 
+  var is_show = $("input[name='is_show']:checked").val();
+  var is_hot = $("input[name='is_hot']:checked").val();
+  var is_recommend = $("input[name='is_recommend']:checked").val();
+  var short_title = $('#short_title').val();
   var id =$('#id').val();
   var load = layer.load(1);
   $.ajax({
@@ -197,12 +297,17 @@ layui.use(['form', 'layedit', 'laydate','upload'], function(){
       title:title,
       logo:imgs,
       ios:ios,
+      thumb,thumb,
       android:android,
       sock:scok,
       url:url,
+      short_title:short_title,
       id:id,
       content:content,
-      agent:agent
+      agent:agent,
+      is_recommend:is_recommend,
+      is_hot:is_hot,
+      is_show:is_show
      
     },success:function(res){
       layer.close(load);
@@ -220,6 +325,8 @@ layui.use(['form', 'layedit', 'laydate','upload'], function(){
                 window.location.href= '__APP__/admin/app/index';
               }
             });
+        }else if(res.code==2){
+            layer.msg(res.msg);
         }else{
            layer.open({
               type: 1,

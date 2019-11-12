@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+<title>签到排行榜</title>
+<link href="css/bangdan.css" type="text/css" rel="stylesheet">
+<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<!--<script src="js/market.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+	<!--排行榜-->
+	<div class="bangdan_bg"></div>
+	<div id="bangdan">
+		<ul></ul>
+		<div class="lock_btn">查看更多</div>
+	</div>
+	
+</body>
+<script>
+	//获取屏幕宽度；
+	windWid();
+	function windWid(){
+		var w=$('body').width();
+		$("html").css({"font-size":(w/10)+'px'});
+	}
+	//监听窗口变化
+	$(window).resize(function(){
+		windWid();
+	});
+	
+	//动态添加排行榜用户
+	var arry=[
+	{
+		img:"img/personal/head_img.png",
+		name:"小包子",
+		time:"00:00:01",
+		img_tl:'img/bangdan/nber_1.png'
+	},{
+		img:"img/personal/head_img.png",
+		name:"小土豆",
+		time:"00:00:03",
+		img_tl:'img/bangdan/nber_2.png'
+	},{
+		img:"img/personal/head_img.png",
+		name:"豌豆",
+		time:"00:00:10",
+		img_tl:'img/bangdan/nber_3.png'
+	},{
+		img:"img/personal/head_img.png",
+		name:"小面",
+		time:"00:00:19"
+	},{
+		img:"img/personal/head_img.png",
+		name:"大包子",
+		time:"00:00:59"
+	},{
+		img:"img/personal/head_img.png",
+		name:"豆沙包",
+		time:"00:01:05"
+	},{
+		img:"img/personal/head_img.png",
+		name:"小米",
+		time:"00:02:09"
+	},{
+		img:"img/personal/head_img.png",
+		name:"小土豆",
+		time:"00:11:45"
+	},{
+		img:"img/personal/head_img.png",
+		name:"小土豆",
+		time:"00:11:45"
+	},{
+		img:"img/personal/head_img.png",
+		name:"小土豆",
+		time:"00:11:45"
+	},{
+		img:"img/personal/head_img.png",
+		name:"小土豆",
+		time:"00:11:45"
+	},{
+		img:"img/personal/head_img.png",
+		name:"小土豆",
+		time:"00:11:45"
+	},{
+		img:"img/personal/head_img.png",
+		name:"小土豆",
+		time:"00:11:45"
+	}
+	];
+	//循环遍历排行榜用户
+	$.each(arry,function(index,fn){
+		if(index<3){
+			$("#bangdan ul").append('<li><div class="bd_number"><img src="'+fn.img_tl+'"></div><div class="bd_img"><img src="'+fn.img+'"></div><span>'+fn.name+'</span><div class="bd_time">'+fn.time+'</div></li>');
+		}else{
+			$("#bangdan ul").append('<li><div class="bd_number">'+(index+1)+'</div><div class="bd_img"><img src="'+fn.img+'"></div><span>'+fn.name+'</span><div class="bd_time">'+fn.time+'</div></li>');
+			$("#bangdan ul li").eq(index).find('.bd_number').css("background","none");
+		}
+	});
+	
+	var li_width=$("#bangdan ul li").innerHeight();
+	$('.lock_btn').click(function(){
+		$("#bangdan ul").height(li_width*arry.length).css("overflow","visible");
+		$(this).css('color','#b0b0b0').text('已显示全部')
+	});
+	
+</script>
+</html>

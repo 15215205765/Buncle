@@ -1,0 +1,20 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>交易所公告详情</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css" />
+{include file="public/unshare" /}
+</head>
+
+<body>
+    <div class="gonggao_title">{$data['title']}</div>
+        <div class="gonggao_user"> <b>{$data['author']}</b> </div>
+            <div class="neirong_xinxi">{$data['time']} 发布，内容以<!-- <a href="#"> -->原文链接<!-- </a> -->为准</div>
+
+    <div class="gonggao_allneirong">
+    	{$data['content']}
+    </div>
+
+</body>
+</html>

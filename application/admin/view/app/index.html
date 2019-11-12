@@ -22,20 +22,44 @@ td{
                         
                         <div class="layui-form-item"> 
                              <a style="float: left;margin-right: 10px;" class="layui-btn  btn-chouj-choose layui-btn-sm layui-btn-normal" href="__APP__/admin/app/add" style="color:#fff">添加</a>
-                             <!--  <button class="layui-btn test" style="float: right;" lay-data="{accept: 'file'}">上传文件</button> -->
+                              <form method="get" action="" class="layui-form">
+                                <input type="text" name="keyword" placeholder="请输入关键字" lay-verify="title" autocomplete="off" class="layui-input long-input" value="{$keyword}" style="float: left;">
+                                <div style="width:30%;float:left;">
+                                    <select name="is_show" lay-verify="" >
+                                      <option value=""></option>
+                                      <option value="0" <?php if($is_show==0){ echo 'selected';}?>>未审核</option>
+                                      <option value="1" <?php if($is_show==1){ echo 'selected';}?>>已审核</option>
+                                    </select>
+                                 </div>
+                                 <div style="width:30%;float:left;">
+                                    <select name="agent" lay-verify="" >
+                                      <option value="">请选择</option>
+                                      <option value="1" <?php if($agent==1){ echo 'selected';}?>>交易所</option>
+                                      <option value="2" <?php if($agent==2){ echo 'selected';}?>>资讯媒体</option>
+                                      <option value="3" <?php if($agent==3){ echo 'selected';}?>>钱包应用</option>
+                                      <option value="4" <?php if($agent==4){ echo 'selected';}?>>项目应用</option>
+                                    </select>
+                                 </div>
+                                <input type="submit" class="layui-btn" value="搜索" name="" style="float: left;">
+                             </form>
                         </div>
                         
                         <div class="layui-form">
                             <table class="layui-table" style="table-layout:fixed;" id="test" lay-filter="test">
                             <thead>
-                            	<th>id</th>
-                            	<th>名称</th>
-                            	<th>LOGO</th>
+                            	<th style="width:30px;">id</th>
+                            	<th style="width:100px;">名称</th>
+                            	<th style="width:50px;">LOGO</th>
                             	<th style="width:100px;">ios下载地址</th>
                                 <th style="width:100px;">安卓下载地址</th>
                             	<th  style="width:100px;">官网</th>
-                            	<th>排序</th>
+                            	<th style="width:50px;">排序</th>
                             	<th>上传时间</th>
+                                <th style="width:50px;">类别</th>
+                                <th style="width:50px;">最新</th>
+                                <th style="width:50px;">热门</th>
+                                <th style="width:50px;">赞助</th>
+                                <th>状态</th>
                                 <th>操作</th>
                             </thead>
                             <tbody>
@@ -43,12 +67,60 @@ td{
                             <tr>
                             	<td>{$item['id']}</td>
                             	<td>{$item['title']}</td>
-                            	<td><img src="__PUBLIC__/uploads/{$item['logo']}"></td>
+                            	<td><img src="__PUBLIC__/uploads/{$item['logo']}" style="width:60%;"></td>
                             	<td>{$item['ios']}</td>
                                 <td>{$item['android']}</td>
                             	<td>{$item['url']}</td>
                             	<td>{$item['sock']}</td>
                             	<td>{$item['createtime']|date="Y-m-d H:i",###}</td>
+                                 <td>{switch name="$item['agent']"}
+                                        {case value="1"}
+                                           交易所
+                                        {/case}
+                                        {case value="2"}
+                                          资讯媒体
+                                        {/case}
+                                        {case value="3"}
+                                          钱包应用
+                                        {/case}
+                                        {default /}
+                                            项目应用
+                                    {/switch}</td>
+                                <td>
+                                    {if $item['is_recommend']==1}
+                                       
+                                           是
+                                        {else /}
+                                            否
+                                   {/if}
+                                </td>
+                                 <td>
+                                   {if $item['is_hot']==1}
+                                       
+                                           是
+                                        {else /}
+                                            否
+                                   {/if}
+                                </td>
+                                <td>
+                                   {if $item['zanzhu']==1}
+                                       
+                                           是
+                                        {else /}
+                                            否
+                                   {/if}
+                                </td>
+                                <td>
+                                    {switch name="$item['is_show']"}
+                                        {case value="0"}
+                                            <button class="layui-btn layui-btn-primary">未审核</button><button href="__APP__/admin/app/add?id={$item['id']}" class="layui-btn tongguo"  data-id="{$item['id']}">通过</button>
+                                        </div>
+                                        {/case}
+                                        
+                                        {default /}
+                                       <button class="layui-btn layui-btn-primary">已审核</button><button href="__APP__/admin/app/add?id={$item['id']}" class="layui-btn  layui-btn-danger yingcang" data-id="{$item['id']}">隐藏</button>
+                                    {/switch}
+                                </td>
                                 <td><a href="__APP__/admin/app/add?id={$item['id']}" class="layui-btn">修改</a> <button data-id='{$item['id']}' class="layui-btn layui-btn-danger del">删除</button></td>
                             </tr>
                             {/volist}
@@ -93,4 +165,72 @@ td{
             });
         })
     })
+        $('.tongguo').each(function(){
+        $(this).click(function(){
+            var id = $(this).attr('data-id');
+            layer.confirm('确认通过吗？', {
+              btn: ['确定', '取消'] //可以无限个按钮
+              
+            }, function(index, layero){
+                $.ajax({
+                    url:'__APP__/admin/app/tongguo',
+                    type:'post',
+                    dataType:'json',
+                    data:{
+                        id:id
+                    },
+                    success:function(res){
+                        layer.close(index);
+                        if(res.code==0){
+                            layer.msg('操作成功',{shift:-1},function(){
+                                window.location.href=location;
+                            })
+                        }else{
+                            layer.msg('操作失败');
+                        }
+                    }
+                })
+            }, function(index){
+              layer.close(index);
+            });
+        })
+    })
+    $('.yingcang').each(function(){
+        $(this).click(function(){
+            var id = $(this).attr('data-id');
+            layer.confirm('确认隐藏吗？', {
+              btn: ['确定', '取消'] //可以无限个按钮
+              
+            }, function(index, layero){
+                $.ajax({
+                    url:'__APP__/admin/app/yingcang',
+                    type:'post',
+                    dataType:'json',
+                    data:{
+                        id:id
+                    },
+                    success:function(res){
+                        layer.close(index);
+                        if(res.code==0){
+                            layer.msg('操作成功',{shift:-1},function(){
+                                window.location.href=location;
+                            })
+                        }else{
+                            layer.msg('操作失败');
+                        }
+                    }
+                })
+            }, function(index){
+              layer.close(index);
+            });
+        })
+    })
+    layui.use(['form', 'layedit', 'laydate','upload'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+    var $ = layui.jquery
+  ,upload = layui.upload;
+})
 </script>

@@ -1,0 +1,15 @@
+<style type="text/css">
+
+	.footer-active{
+		color: #0166fe;
+	}
+</style>
+<div style="width:100%;height:250px;"></div>
+<div id="max_foot">
+  <ul>
+    <li><a href="__APP__/test/app/index"><img src="<?php if (request()->action()=='index' && request()->controller()=='App'){echo '__PUBLIC__/static/images/2/inex_down.png';}else{ echo'__PUBLIC__/static/images/2/inex.png';}?>"><b style="<?php if (request()->action()=='index' && request()->controller()=='App'){echo 'color:#0166fe';}?>">首页</b></a></li>
+    <li><a href="__APP__/test/index/index"><img src="{:request()->controller()=='Index' ? '__PUBLIC__/static/images/2/zixun_down.png' : '__PUBLIC__/static/images/2/zixun.png'}"><b style="{:request()->controller()=='Index' ? 'color:#0166fe' : ' '}">资讯</b></a></li>
+    <li><a href="__APP__/test/app/search"><img src="<?php if (request()->action()=='search' && request()->controller()=='App'){echo '__PUBLIC__/static/images/2/sousuo_down.png';}else{ echo '__PUBLIC__/static/images/2/sousuo.png';}?>"><b style="<?php if (request()->action()=='search' && request()->controller()=='App'){echo 'color:#0166fe';}?>">搜索</b></a></li>
+    <li><a href="__APP__/test/user"><img src="{:request()->controller()=='User' ? '__PUBLIC__/static/images/2/me_down.png' : '__PUBLIC__/static/images/2/me.png'}"><b style="{:request()->controller()=='User' ? 'color:#0166fe' : ' '}">我的</b></a></li>
+  </ul>
+</div>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+<title>个人中心</title>
+<link href="css/personal.css" type="text/css" rel="stylesheet">
+<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<!--<script src="js/market.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+	<!--个人中心头像-->
+	<div id="per_img">
+		<i></i>
+		<div class="per_id">
+			<h3>Joio</h3><br>
+			<h4>BID:</h4>
+			<span>1234564788</span>
+		</div>
+		<a href="Sign_in.html" class="per_btn">签到</a>
+		<a href="###" class="per_uncle">
+			<span>996.6</span>
+			<p>总资产（ UNCLE ）</p>
+		</a>
+	</div>
+	<div id="banner_img">
+		<a href="activity.html" class="img_bg"></a>
+		<a href="###" class="img_smlL"></a>
+		<a href="###" class="img_smlR"></a>
+	</div>
+	<div class="home">
+		<i class="bg_01"></i>
+		<a href="addres.html" style="padding-bottom: 0.2rem">我的收货地址</a>
+	</div>
+	<div class="home">
+		<i class="bg_02"></i>
+		<a href="order_all.html" style="border: none">我的订单</a>
+	</div>
+	
+</body>
+<script>
+	//获取屏幕宽度；
+	windWid();
+	function windWid(){
+		var w=$('body').width();
+		$("html").css({"font-size":(w/10)+'px'});
+	}
+	//监听窗口变化
+	$(window).resize(function(){
+		windWid();
+	});
+	
+</script>
+</html>

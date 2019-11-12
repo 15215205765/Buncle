@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MBTC</title>
+	<meta http-equiv="content-type" content="textml;charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	{include file="public/unshare" /}
+	<style type="text/css">
+		body,html{
+			padding: 0;
+			margin: 0;
+			background: #fff;
+		}
+		.main{
+			width: 90%;
+			padding: 0 5%;
+		}
+		.title{
+			font-size: 20px;
+			font-weight: 500;
+			line-height: 50px;
+		}
+		.idcard{
+			width: 100%;
+		}
+		.idcard-title{
+			font-size: 16px;
+			line-height: 30px;
+		}
+		.idcard-input{
+			width: 100%;
+			height: 50px;
+			border-bottom: 1px solid #ddd;
+		}
+		.idcard-input input{
+			border:none;
+			outline: none;
+			font-size: 16px;
+			line-height: 30px;
+			margin-top: 10px;
+		}
+		.uncle{
+			width: 100%;
+		}
+		.uncle-num{
+			width: 39%;
+			float: left;
+			margin: 10px 5%;
+			height: 40px;
+			border-radius: 20px;
+			line-height: 40px;
+			text-align: center;
+			border:1px solid #0166fe;
+			color: #0166fe;
+		}
+		.submit{
+			clear: both;
+			width: 60%;
+			background: #0166fe;
+			color: #fff;
+			height: 40px;
+			line-height: 40px;
+			border-radius: 20px;
+			text-align: center;
+			display: inline-block;
+			margin: 40px 20%;
+		}
+		.rule{
+			width: 100%;
+			font-size: 16px;
+		}
+		.active{
+			background: #0166fe;
+			color: #fff;
+		}
+		.record{
+			width: 100%;
+		}
+		.list{
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			border-bottom: 1px solid #eee;
+		}
+		.list div{
+			float: left;
+			width: 33%;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<div class="main">
+	<div class="title">
+		 UNCLE兑换MBTC
+	</div>
+	<div class="idcard">
+		<div class="idcard-title">
+			宝石罐身份号
+		</div>
+		<div class="idcard-input">
+			<input type="number" id="idcard" placeholder="请输入宝石罐身份号" name="">
+		</div>
+	</div>
+	<div class="title">
+		 UNCLE数量：{$user['buncle']}
+	</div>
+
+	<div class="rule">
+		<p>兑换规则：1000UNCLE兑换0.1MBTC</p>
+	</div>
+	<div class="uncle">
+		{if $number==0}
+		您当前的unlce不足1000
+		{/if}
+		{for start='1' end='$number+1'}
+		<div class="uncle-num" data-number='{$i}'>
+			{$i*1000}UNCLE
+		</div>
+		{/for}
+		
+	</div>
+	<div class="submit">
+		提交
+	</div>
+	<div class="title">
+		 兑换记录
+	</div>
+	<div class="record">
+		<div class="list">
+			<div class="number">
+				数量
+			</div>
+			<div class="time">
+				时间
+			</div>
+			<div class="statu">
+				状态
+			</div>
+		</div>
+		{volist name="list" id="item"}
+		<div class="list">
+			<div class="number">
+				{$item['number']}
+			</div>
+			<div class="time" style="line-height:25px;">
+				{$item['createtime']|date="Y-m-d H:i",###}
+			</div>
+			<div class="statu">
+				 {switch name="$item['statu']"}
+                                     {case value="0"}
+                                           待发放
+                                        {/case}
+                                       {case value="2"}
+                                           已拒绝
+                                        {/case}
+                                        {default /}
+                                           已发放
+                                    {/switch}
+			</div>
+		</div>
+		{/volist}
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/jquery.min.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script> 
+<script src="__PUBLIC__/layui/layui.js"></script> 
+<script type="text/javascript">
+	var number=0;
+	$('.uncle-num').each(function(){
+		$(this).click(function(){
+			$(this).addClass('active');
+			$(this).siblings().removeClass('active');
+			number = $(this).attr('data-number');
+
+		})
+	})
+	$('.submit').click(function(){
+		var idcard = $('#idcard').val();
+		if(idcard==''){
+			layer.msg('请输入宝石罐身份号');
+			return false;
+		}
+		if(number==0){
+			layer.msg('请选择兑换数量');
+			return false;
+		}
+		load = layer.load(1);
+		$.ajax({
+			url:'__APP__/test/user/mbtcadd',
+			type:'post',
+			dataType:'json',
+			data:{
+				number:number,
+				idcard:idcard
+			},
+			success:function(res){
+				layer.close(load);
+				if(res.code==0){
+					layer.msg(res.msg,{shift:-1},function(){
+						window.location.href='__APP__/test/app';
+					});
+				}else{
+					layer.msg(res.msg);
+				}
+			}
+		})
+	})
+</script>
+</html>

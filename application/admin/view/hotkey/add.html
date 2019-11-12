@@ -1,0 +1,172 @@
+{include file="public/left_nav" /}
+<div class="layui-body" style="background-color:#f2f2f2">
+    <div style="padding: 10px 0 0px 15px;">
+      
+       
+        <!-- <button style="float: left;margin-right: 10px;" class="layui-btn btn-chouj-choose layui-btn-sm layui-btn-normal">
+        <a href="__APP__/admin/prize/add" style="color:#fff">添加奖品</a>
+        </button> -->
+    </div>
+    <div style="padding: 10px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">添加热门搜索</div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" action="">
+                          
+                          
+                             <div class="layui-form-item">
+                                <label class="layui-form-label">关键词：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" id="key" lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['key']}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">排序：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" id="sort" lay-verify="title" autocomplete="off" placeholder="请点击输入" class="layui-input long-input" value="{$data['sort']}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <div class="layui-btn site-demo-layedit btn-chouj-choose" id="submit">提交</div>
+                                    <input type="hidden" id="id" value="{$data['id']}" name="">
+                                    <a class="layui-btn layui-btn-primary" href="__APP__/admin/hotkey/index">返回</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body></html><style>
+.tishitiao {
+	background-color: #ff794e;
+	color: #fff;
+	border-left: none;
+	line-height: 3px;
+}
+.layui-layer-content {
+	padding: 20px 0;
+	text-align: center;
+}
+.layui-layer-molv .layui-layer-title {
+	color: #009f95
+}
+.layui-laydate .layui-this {
+	background-color: #4f76eb!important;
+	color: #fff!important;
+}
+.btn-chouj-choose {
+	border-radius: 3px;
+	background-color: #1781ed;
+	color: #fff;
+}
+.btn-chouj {
+	border-radius: 5px;
+	background-color: #fff;
+	color: #1781ed;
+	border: 1px solid #1781ed;
+}
+</style>
+<script type="text/javascript">
+
+layui.use(['form', 'layedit', 'laydate','upload'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+    var $ = layui.jquery
+  ,upload = layui.upload;
+
+
+ $('#submit').click(function(){
+  
+  var key = $('#key').val();
+  var sort = $('#sort').val();
+  var id = $('#id').val();
+ 
+ 
+  var id =$('#id').val();
+  var load = layer.load(1);
+  $.ajax({
+    url:'__APP__/admin/hotkey/addapp',
+    type:'post',
+    dataType:'json',
+    data:{
+      key:key,
+      sort:sort,
+      id:id
+     
+    },success:function(res){
+      layer.close(load);
+        if(res.code==0){
+           layer.open({
+              type: 1,
+              title: '提示',
+              icon: 1,
+              content: '添加成功',
+              time:2000 ,
+              skin: 'layui-layer-molv',
+              closeBtn: 0,
+              area: ['300px', '150px'],
+              end:function(){
+                window.location.href= '__APP__/admin/hotkey/index';
+              }
+            });
+        }else if(res.code==2){
+            layer.msg(res.msg);
+        }else{
+           layer.open({
+              type: 1,
+              title: '提示',
+              icon: 1,
+              content: '添加失败',
+              time:2000 ,
+              skin: 'layui-layer-molv',
+              closeBtn: 0,
+              area: ['300px', '150px'],
+              end:function(){
+               // window.location.href=location;
+              }
+            });
+        }
+    }
+  })
+})
+  //监听提交
+  form.on('submit(demo1)', function(){
+layer.open({
+  type: 1,
+  skin: 'layui-layer-molv',
+  closeBtn: 0, 
+  anim: 2,
+  area: ['300px', '150px'],
+  shadeClose: false, 
+  content: '加载中，请耐心等待...',
+  title:' ',
+  time:2000 ,
+   end: function(){
+    layer.open({
+      type: 1,
+      title: ' ',
+	  icon: 1,
+      content: '添加成功',
+	  time:2000 ,
+	   skin: 'layui-layer-molv',
+       closeBtn: 0,
+	   area: ['300px', '150px'],
+    });
+  }
+});
+
+    /*layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })*/
+    return false;
+  });
+});
+</script>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+<title>我的订单</title>
+<link href="css/order_exchange.css" type="text/css" rel="stylesheet">
+<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<!--<script src="js/market.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+	<!--订单导航-->
+	<div id="order_box">
+		<h2>我的订单</h2>
+		<ul>
+			<li style="margin-left: 0"><a href="order_all.html">全部</a></li>
+			<li><a href="order_Drop.html">待发货</a></li>
+			<li><a href="order_Been.html">已收货</a></li>
+			<li><a style="color: #0166fe" href="order_Exchange.html">已兑换</a><i></i></li>
+			<li><a href="order_Buy.html">已购买</a></li>
+		</ul>
+	</div>
+	<!--订单商品-->
+	<div class="goods">
+		<i></i>
+		<h3>UNCLE兑换EOS</h3>
+		<p>本次已成功兑换<span>10</span>EOS，消耗999<br>UNCLE，剩余<span>1000</span> UNCLE</p>
+	</div>
+	
+</body>
+<script>
+	//获取屏幕宽度；
+	windWid();
+	function windWid(){
+		var w=$('body').width();
+		$("html").css({"font-size":(w/10)+'px'});
+	}
+	//监听窗口变化
+	$(window).resize(function(){
+		windWid();
+	});
+	
+</script>
+</html>

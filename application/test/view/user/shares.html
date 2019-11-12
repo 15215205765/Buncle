@@ -1,0 +1,214 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="user-scalable=0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>邀请有礼</title>
+<link href="__PUBLIC__/style/style.css" rel="stylesheet" type="text/css">
+<!--<link href="style.css" rel="stylesheet" type="text/css"> -->
+<!--<script type="text/javascript" src="jquery-2.1.1.min.js"></script> 
+<script type="text/javascript" src="jquery.mobile-1.2.1.min"></script> --> 
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script> 
+<script type="text/javascript" src="/shop/js/jquery-2.1.1.min.js"></script> 
+<script type="text/javascript" src="/shop/js/jquery.mobile-1.2.1.min.js"></script>
+	  <script>
+     wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: '{$signPackage["appId"]}',  
+                timestamp: '{$signPackage["timestamp"]}',  
+                nonceStr: '{$signPackage["nonceStr"]}',  
+                signature: '{$signPackage["signature"]}',   
+                jsApiList: [
+                    'checkJsApi',  
+                    'onMenuShareTimeline',  
+                    'onMenuShareAppMessage',  
+                    'onMenuShareQQ',  
+                    'onMenuShareWeibo',  
+                    'onMenuShareQZone'  ] // 必填，需要使用的JS接口列表 这里填写需要用到的微信api openlocation为使用微信内置地图查看位置接口
+            });
+              wx.ready(function () {  
+             //分享到朋友圈  
+             
+             wx.onMenuShareTimeline({  
+                 title: '区块链App都在这里……', // 分享标题  
+                 link:"http://bingbing.pro/chsq/app/index.php?i=4&c=entry&do=chshareqrcode&m=we7_coupon&openid={$member['openid']}&bid={$member['bid']}", 
+                 imgUrl: "http://wx.buncle.co/public/static/images/share-logo.jpg", // 分享图标  
+                 success: function () {  
+            // 分享成功执行此回调函数  
+                   
+                 },  
+                 cancel: function () {  
+                   
+                 }  
+             });  
+  
+             //分享给朋友  
+             wx.onMenuShareAppMessage({  
+                 title:  '区块链App都在这里……', // 分享标题  
+                 desc:  "下载应用，就上BUNCLE！",  
+                 link: "http://bingbing.pro/chsq/app/index.php?i=4&c=entry&do=chshareqrcode&m=we7_coupon&openid={$member['openid']}&bid={$member['bid']}", 
+                 imgUrl: "http://wx.buncle.co/public/static/images/share-logo.jpg", // 分享图标  
+                 trigger: function (res) {  
+                     // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回  
+                 },  
+                 success: function (res) {  
+             // 分享成功执行此回调函数  
+                    
+                 },  
+                 cancel: function (res) {  
+                     
+                 },  
+                 fail: function (res) {  
+                     alert(JSON.stringify(res));  
+                 }  
+             });  
+         }); 
+
+    
+</script>
+<style type="text/css">
+	.share{
+		position: fixed;
+		top: 0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		display: none;
+		z-index: 999;
+        background: rgba(0,0,0,.8);
+	}
+	.share img{
+		width: 100%;
+	}
+</style>
+</head>
+
+<body>
+<div id="all_bg">
+<div id="APP_list_top" style=" border:0;">
+ <div class="list_top_back"></div>
+  <b style=" color:#FFF"></b>
+</div>
+<div class="yaoqing_title_bg"></div>
+<div class="yaoqing_all">
+<div class="yaoqing_on_off">
+<b>邀请好友关注领取更多UNCLE</b>
+<a class="button_style lj-share">链接分享</a><a class="button_style hb-share" >海报分享</a><!--href="<!--http://bingbing.pro/chsq/app/index.php?i=4&c=entry&do=chshareqrcode&m=we7_coupon&openid={$member['openid']}&bid={$member['bid']}"-->
+</div>
+<h1>邀请记录</h1>
+<div class="yaoqing_jilu">
+<ul>
+<li><b>M1</b><span>{$data['M1']}</span></li>
+<li><b>M2</b><span>{$data['M2']}</span></li>
+<li><b>M3</b><span>{$data['M3']}</span></li>
+<li><b>M4</b><span>{$data['M4']}</span></li>
+<li><b>M5</b><span>{$data['M5']}</span></li>
+<li><b>M6</b><span>{$data['M6']}</span></li>
+</ul>
+<div style="margin: 0.4rem 0 0 0.4rem;line-height: 1.6rem;font-size: 0.36rem;color: #333">您的邀请人BID  ：  <span>{$parent['bid']}</span></div>
+</div>
+<h1>邀请规则</h1>
+<div class="yaoqing_guize">
+<ul>
+<li><img src="__PUBLIC__/static/images/2/quan.png"><span>关注BUNCLE即送777UNCLE，邀请M1送 100UNCLE，邀请M2送50UNCLE，邀请M3送30UNCLE，邀请M4送20UNCLE，邀请M5送10UNCLE，邀请M6送5UNCLE。</span></li>
+<li><img src="__PUBLIC__/static/images/2/quan.png"><span>BUNCLE拥有对本次活动的最终解释权，有权取消通过不正当手段获取的奖励，唯有真实分享邀请关注，才可领取UNCLE。</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="share">
+	<img src="__PUBLIC__/static/images/share-bg.png">
+</div>
+
+<!--选择海报 -->
+<div class="tishi">保存成功</div>
+<div class="bg_box">
+	<div class="txt_box">
+		<div class="box_title">
+			<h3>海报选择</h3>
+			<i></i>
+		</div>
+		<ul>
+			<li data-img='buncle.png'><i></i><img src="__PUBLIC__/static/images/buncle.jpg" alt=""></li>
+			<li data-img='buncle1.png'><i></i><img src="__PUBLIC__/static/images/img_haibao01.jpg" alt=""></li>
+			 <!--<li><i></i><img src="__PUBLIC__/static/images/img_haibao01.jpg" alt=""></li>
+			<li><i></i><img src="__PUBLIC__/static/images/img_haibao01.jpg" alt=""></li>
+			<li><i></i><img src="__PUBLIC__/static/images/img_haibao01.jpg" alt=""></li>-->
+		</ul>
+		<div class="btn_baocun">
+			<i></i>
+			<span>保存海报</span>
+		</div>
+	</div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+	$(function(){
+		//获取屏幕宽度；
+		var w=$(window).width();
+		function windWid(){
+			$("html").css({"font-size":(w/10)+'px'});
+		}
+		//监听窗口变化
+		$(window).resize(function(){
+			windWid();
+		});
+		windWid();
+		
+		//点击选择海报
+		var num=0;
+		var ulW=$(".txt_box ul li").width();
+		var ulNum=$(".txt_box ul li").length;
+		$(".txt_box ul").width(((w/10)*0.6+ulW)*ulNum);
+		$(".txt_box ul li").eq(1).find('i').addClass('bg_show');
+		$(".txt_box ul").on("swiperight",function(){  //向右滑动
+			num--;
+			if(num<-1){
+				num=-1;
+			}
+			$(".txt_box ul li").find('i').removeClass('bg_show');
+			$(".txt_box ul li").eq(num+1).find('i').addClass('bg_show');
+			$(this).animate({'left':-((w/10)*3.5*num)-((w/10)*0.25)},300);
+		});
+		
+		$(".txt_box ul").on("swipeleft",function(){ //向左滑动
+			num++;
+			if(num>ulNum-2){
+				num=ulNum-2;
+			}
+			$(".txt_box ul li").find('i').removeClass('bg_show');
+			$(".txt_box ul li").eq(num+1).find('i').addClass('bg_show');
+			$(this).animate({'left':-((w/10)*3.5*num)-((w/10)*0.25)},300);
+		});
+		
+		$('.hb-share').click(function(){  //点击海报分享按钮显示选择海报页面
+			$('.bg_box').show();
+		});
+		$('.box_title').click(function(){ //点击 隐藏
+			$('.bg_box').hide();
+		});
+		$('.btn_baocun').click(function(){ //点击保存海报
+			// $('.bg_box').hide();
+			// $('.tishi').css('height',(w/10)*1.4);
+			// setTimeout(function(){ 
+			// 	$('.tishi').css('height',0);
+			// }, 2000);
+			var img = $(".txt_box ul li").eq(num+1).attr('data-img');
+			window.location.href= 'http://bingbing.pro/chsq/app/index.php?i=4&c=entry&do=chshareqrcode&m=we7_coupon&openid={$member['openid']}&bid={$member['bid']}&haibao='+img;
+		});
+		
+	});
+	
+	
+	$('.lj-share').click(function(){
+		$('.share').show();
+	})
+	$('.share').click(function(){
+		$('.share').hide();
+	})
+	
+	
+</script>
+</html>
